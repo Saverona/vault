@@ -1,0 +1,24 @@
+main > .content {
+  display: block !important;
+}
+
+.content article nav.pagination {
+  margin: 2rem;
+}
+
+body {
+  font-size: calc(16 / var(--rem-base) * 1rem);
+}
+
+.content article nav.pagination a {
+  color: var(--link-font-color);
+}
+
+.content article nav.pagination a:hover {
+  color: var(--link_hover-font-color);
+}
+
+.content article nav.pagination a:hover,
+.content article nav.pagination a:hover > * {
+  text-decoration: underline solid currentColor;
+}
