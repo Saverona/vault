@@ -4,11 +4,11 @@ site:
 content:
   sources:
   - url: https://github.com/Vault-ist/api
-    branches: HEAD
+    branches: main
   - url: https://gitlab.com/antora/demo/demo-component-b.git
     branches: [v2.0, v1.0]
     start_path: docs
-    
+
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
