@@ -3,8 +3,10 @@
 :experimental:
 :hide-uri-scheme:
 // Project URLs:
-:url-project: https://github.com/Docsvision/antora-ui-default.git
+:url-project: https://gitlab.com/antora/antora-ui-default
 :url-preview: https://antora.gitlab.io/antora-ui-default
+:url-ci-pipelines: {url-project}/pipelines
+:img-ci-status: {url-project}/badges/master/pipeline.svg
 // External URLs:
 :url-antora: https://antora.org
 :url-antora-docs: https://docs.antora.org
@@ -16,155 +18,152 @@
 :url-nvm: https://github.com/creationix/nvm
 :url-nvm-install: {url-nvm}#installation
 :url-source-maps: https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map
-:help: http://help.docsvision.com
 
-Данный репозиторий содержит файлы пользовательского интерфейса сайта {help}[], которые могут быть:
+image:{img-ci-status}[CI Status (GitLab CI), link={url-ci-pipelines}]
 
-* Объединены в пакет, который используется для сайта документации.
-* Использоваться для разработки собственного интерфейса.
+This project is an archetype that demonstrates how to produce a UI bundle that can be used by {url-antora}[Antora] to generated a documentation site.
+You can see a preview of the default UI at {url-preview}.
 
-Дизайн пользовательского интерфейса сайта {help}[] был разработан на основе https://antora.gitlab.io/antora-ui-default[Antora Default UI].
+While the default UI is ready to be used with Antora, the intent is that you'll fork it and customize it for your own needs.
+It's intentionally minimalistic so as to give you a good starting point without requiring too much effort to customize.
 
-== Использовать интерфейс по умолчанию
+== Client-Side Search
 
-Интерфейс по умолчанию можно посмотреть на сайте {url-antora-docs}[Antora].
+This UI integrates https://github.com/Mogztter/antora-lunr[Lunr].
 
-.Чтобы использовать данный интерфейс:
-. Найдите следующие строчки в файле antora-playbook.yml:
-+
+== Code of Conduct
+
+The Antora project and its project spaces are governed by our https://gitlab.com/antora/antora/-/blob/master/CODE-OF-CONDUCT.adoc[Code of Conduct].
+By participating, you're agreeing to honor this code.
+Let's work together to make this a welcoming, professional, inclusive, and safe environment for everyone.
+
+== Use the Default UI
+
+If you want to simply use the default UI for your Antora-generated site, add the following UI configuration to your playbook:
+
 [source,yaml]
 ----
 ui:
   bundle:
-    url: ./build/ui-bundle.zip
-----
-+
-. Замените их строчками ниже:
-+
-[source,yaml]
-----
-ui:
-  bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
 ----
 
-== Использовать интерфейс Docsvision
+NOTE: The `snapshot` flag tells Antora to fetch the UI when the `--fetch` command-line flag is present.
+This setting is required because updates to the UI bundle are pushed to the same URL.
+If the URL were to be unique, this setting would not be required.
 
-Пользовательский интерфейс сайта {help}[] требуется упаковать, а затем сохранит в доступном месте. Пользовательский интерфейс по умолчанию не требует таких действий.
+Read on to learn how to customize the default UI for your own documentation.
 
-Если вы хотите видеть на собственном сайте тот же интерфейс, что и на {help}[], ознакомьтесь со следующими пунктами инструкции.
+== Development Quickstart
 
-== Инструкция
+This section offers a basic tutorial to teach you how to set up the default UI project, preview it locally, and bundle it for use with Antora.
+A more comprehensive tutorial can be found in the documentation at {url-antora-docs}.
 
-В данном разделе приведена инструкция, как по настройке проекта пользовательского интерфейса, его предварительному просмотру и упаковке для использования на собственном сайте с Antora.
+=== Prerequisites
 
-С более подробными инструкциями можно ознакомиться на сайте документации Antora: {url-antora-docs}.
+To preview and bundle the default UI, you need the following software on your computer:
 
-=== Требования
-
-Для предварительного просмотра и упаковки, пользовательского интерфейса вам потребуется следующее программное обеспечение:
-
-* {url-git}[git] (команда: `git`)
-* {url-nodejs}[Node.js] (команды: `node` and `npm`)
-* {url-gulp}[Gulp CLI] (команда: `gulp`)
+* {url-git}[git] (command: `git`)
+* {url-nodejs}[Node.js] (commands: `node` and `npm`)
+* {url-gulp}[Gulp CLI] (command: `gulp`)
 
 ==== git
 
-Убедитесь, что на вашем компьютере установлена программа git.
+First, make sure you have git installed.
 
  $ git --version
 
-В противном случае {url-git-dl}[скачайте и установите] ПО git для вашей системы.
+If not, {url-git-dl}[download and install] the git package for your system.
 
 ==== Node.js
 
-Следующим шагом убедитесь, что у вас установлено ПО Node.js. Node.js также включает в себя ПО npm.
+Next, make sure that you have Node.js installed (which also provides npm).
 
  $ node --version
 
-Если выполнение данной команды завершается ошибкой, на вашем компьютере не установлено ПО Node.js.
-Для работы с пользовательским интерфейсом подходит только Node.js версий LTS.
-В данном руководстве в качестве примера устанавливается Node.js 10.
+If this command fails with an error, you don't have Node.js installed.
+If the command doesn't report an LTS version of Node.js (e.g., v10.15.3), it means you don't have a suitable version of Node.js installed.
+In this guide, we'll be installing Node.js 10.
 
-Рекомендуется устанавливать Node.js не из официальных пакетов, а при помощи программы {url-nvm}[nvm] (Node Version Manager), позволяющей управлять различными установленными версиями Node.js.
-Выполните инструкции, {url-nvm-install}[указанные по ссылке], чтобы установить nvm на ваш компьютер.
+While you can install Node.js from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to manage your Node.js installation(s).
+Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
 
-После установки nvm, откройте новое окно командной строки и установите Node.js 10 при помощи следующей команды:
+Once you've installed nvm, open a new terminal and install Node.js 10 using the following command:
 
  $ nvm install 10
 
-При помощи следующей команды можно переключиться к этой версии Node.js в любое время:
+You can switch to this version of Node.js at any time using the following command:
 
  $ nvm use 10
 
-Чтобы сделать Node.js 10 версией по умолчанию в новых сессиях командной строки, введите:
+To make Node.js 10 the default in new terminals, type:
 
  $ nvm alias default 10
 
-Когда вы успешно установили Node.js, вы можете продолжить с установкой Gulp CLI.
+Now that you have Node.js installed, you can proceed with installing the Gulp CLI.
 
 ==== Gulp CLI
 
-Чтобы запустить сборку пользовательского интерфейса, вам понадобится программа для командной строки (CLI) Gulp.
-Пакет Gulp CLI предоставляет команду `gulp`, которая запускает версию Gulp, заявленную в проекте.
+You'll need the Gulp command-line interface (CLI) to run the build.
+The Gulp CLI package provides the `gulp` command which, in turn, executes the version of Gulp declared by the project.
 
-Gulp CLI можно установить глобально, на уровне всей файловой системы, следующей командой:
+You can install the Gulp CLI globally (which resolves to a location in your user directory if you're using nvm) using the following command:
 
  $ npm install -g gulp-cli
 
-Убедитесь, что Gulp CLI установлен и доступен в качестве переменной среды PATH:
+Verify the Gulp CLI is installed and on your PATH by running:
 
  $ gulp --version
 
-Если вы предпочитаете устанавливать глобальные пакеты с использованием Yarn, выполните следующую команду:
+If you prefer to install global packages using Yarn, run this command instead:
 
  $ yarn global add gulp-cli
 
-Также вы можете использовать команду `gulp`, установив её через зависимости проекта.
+Alternately, you can use the `gulp` command that is installed by the project's dependencies.
 
- $ npx --offline gulp --version
+ $ $(npm bin)/gulp --version
 
-После того как вы установили все зависимости, вы можете получить последние изменения и запустить сборку проекта пользовательского интерфейса.
+Now that you have the prerequisites installed, you can fetch and build the UI project.
 
-=== Клонировать и инициализировать проект
+=== Clone and Initialize the UI Project
 
-Клонируйте проект пользовательского интерфейса сайта документации Docsvision, используя git:
+Clone the default UI project using git:
 
 [subs=attributes+]
  $ git clone {url-project} &&
    cd "`basename $_`"
 
-Команда из примера выше клонирует репозиторий с проектом пользовательского интерфейса сайта документации Docsvision, а затем переходит в папку проекта в файловой системе.
-Оставайтесь в папке проекта при выполнении всех последующих команд.
+The example above clones Antora's default UI project and then switches to the project folder on your filesystem.
+Stay in this project folder when executing all subsequent commands.
 
-Используйте npm, чтобы установить зависимости внутри проекта.
-В командной строке выполните следующую команду:
+Use npm to install the project's dependencies inside the project.
+In your terminal, execute the following command:
 
  $ npm install
 
-Данная команда устанавливает зависимости, указанные в файле [.path]_package.json_ в папку [.path]_node_modules/_ проекта.
-Данная папка не включается в пакет пользовательского интерфейса и должна быть _исключена_ из репозитория системы контроля версий.
+This command installs the dependencies listed in [.path]_package.json_ into the [.path]_node_modules/_ folder inside the project.
+This folder does not get included in the UI bundle and should _not_ be committed to the source control repository.
 
 [TIP]
 ====
-Если вы предпочитаете устанавливать пакеты при помощи Yarn, выполните следующую команду:
+If you prefer to install packages using Yarn, run this command instead:
 
  $ yarn
 ====
 
-=== Предварительный просмотр пользовательского интерфейса
+=== Preview the UI
 
-Для проекта пользовательского интерфейса предусмотрена возможность предварительного просмотра без сети.
-Файлы в папке[.path]_preview-src/_ предоставляют организовать просмотр пользовательского интерфейса в действии.
-В этой папке вы найдёте в основном страницы, написанные в AsciiDoc.
-Эти страницы дают достоверный пример, соответствующий реальному сайту.
+The default UI project is configured to preview offline.
+The files in the [.path]_preview-src/_ folder provide the sample content that allow you to see the UI in action.
+In this folder, you'll primarily find pages written in AsciiDoc.
+These pages provide a representative sample and kitchen sink of content from the real site.
 
-Чтобы собрать пользовательский интерфейс и просмотреть его на локальном веб-сервере, выполните команду `preview`:
+To build the UI and preview it in a local web server, run the `preview` command:
 
  $ gulp preview
 
-Вы увидите URL, указанный в выводе команды:
+You'll see a URL listed in the output of this command:
 
 ....
 [12:00:00] Starting server...
@@ -172,55 +171,53 @@ Gulp CLI можно установить глобально, на уровне �
 [12:00:00] Running server
 ....
 
-Перейдите по указанному URL, чтобы просмотреть сайт локально.
+Navigate to this URL to preview the site locally.
 
-Пока команда выполняется, любые изменения, вносимые в исходные файлы будут мгновенно отражены в браузере.
-Команда отслеживает изменения в проекте и запускает задачу `preview:build`, если изменения обнаружены, а затем отправляет обновления в браузер.
+While this command is running, any changes you make to the source files will be instantly reflected in the browser.
+This works by monitoring the project for changes, running the `preview:build` task if a change is detected, and sending the updates to the browser.
 
-Нажмите kbd:[Ctrl+C], чтобы остановить сервер предварительного просмотра и завершить непрерывную сборку.
+Press kbd:[Ctrl+C] to stop the preview server and end the continuous build.
 
-=== Пакет для использования с Antora
+=== Package for Use with Antora
 
-Если вам необходим пакет пользовательского интерфейса, который можно использовать с сайтом документации, вам необходимо упаковать пользовательский интерфейс. Упакованный интерфейс можно использовать для разворачивания сайта документации локально. Для этого выполните следующую команду:
+If you need to package the UI so you can use it to generate the documentation site locally, run the following command:
 
  $ gulp bundle
 
-Если lint сообщает об ошибках, исправьте их.
+If any errors are reported by lint, you'll need to fix them.
 
-Когда команда завершается успешно, пакет пользовательского интерфейса будет доступен по пути [.path]_build/ui-bundle.zip_.
-Направить Antora на данный пакет можно при помощи параметра команды командной строки `--ui-bundle-url`.
+When the command completes successfully, the UI bundle will be available at [.path]_build/ui-bundle.zip_.
+You can point Antora at this bundle using the `--ui-bundle-url` command-line option.
 
-.Например, так:
- $ npx antora --fetch --ui-bundle-url antora-playbook.yml
-
-Если у вас запущен предварительный просмотр, и вы хотите одновременно собрать пакет интерфейса, не испортив предварительный просмотр, используйте команду:
+If you have the preview running, and you want to bundle without causing the preview to be clobbered, use:
 
  $ gulp bundle:pack
 
-Пакет пользовательского интерфейса будет доступен по пути [.path]_build/ui-bundle.zip_.
+The UI bundle will again be available at [.path]_build/ui-bundle.zip_.
 
-==== Карты источников
+==== Source Maps
 
-Сборка объединяет все CSS и клиентские скрипты JavaScript в общие файлы [.path]_site.css_ и [.path]_site.js_ соответственно. Это делается с целью уменьшения размера пакета.
-{url-source-maps}[Карты источников] сопоставляют эти объединённые файлы с их исходными источниками.
+The build consolidates all the CSS and client-side JavaScript into combined files, [.path]_site.css_ and [.path]_site.js_, respectively, in order to reduce the size of the bundle.
+{url-source-maps}[Source maps] correlate these combined files with their original sources.
 
-Данное "картирование источников" достигается за счёт создания дополнительных файлов-карт, которые задают данную ассоциацию.
-Файлы карт располагаются рядом с объединёнными файлами в папке сборки.
-Картирование, обеспечиваемое данными файлами позволяет ПО для поиска ошибок указывать на оригинальный источник, а не на объединённый файл.
+This "`source mapping`" is accomplished by generating additional map files that make this association.
+These map files sit adjacent to the combined files in the build folder.
+The mapping they provide allows the debugger to present the original source rather than the obfuscated file, an essential tool for debugging.
 
-В режиме предварительного просмотра, карты источников автоматически включены, дополнительных действий для их использования от вас не требуется.
-Если вам требуется включить карты источников в пакет, вы можете это сделать, установив переменную среды `SOURCEMAPS` в значение `true` во время запуска команды:
+In preview mode, source maps are enabled automatically, so there's nothing you have to do to make use of them.
+If you need to include source maps in the bundle, you can do so by setting the `SOURCEMAPS` environment variable to `true` when you run the bundle command:
 
  $ SOURCEMAPS=true gulp bundle
 
-В данном случае, пакет будет включать карты источников, которые можно использовать с целью поиска и диагностики ошибок на готовом сайте.
+In this case, the bundle will include the source maps, which can be used for debugging your production site.
 
-== Защита прав и лицензия
+== Copyright and License
 
-Copyright (C) 2017-н.в. OpenDevise Inc. и Antora Project.
+Copyright (C) 2017-present OpenDevise Inc. and the Antora Project.
 
-Данное ПО предоставляется на условиях https://www.mozilla.org/en-US/MPL/2.0/[Mozilla Public License Version 2.0] (MPL-2.0).
+Use of this software is granted under the terms of the https://www.mozilla.org/en-US/MPL/2.0/[Mozilla Public License Version 2.0] (MPL-2.0).
+See link:LICENSE[] to find the full license text.
 
-== Авторы
+== Authors
 
-Разработка Antora производится и и спонсируется компанией {url-opendevise}[OpenDevise Inc].
+Development of Antora is led and sponsored by {url-opendevise}[OpenDevise Inc].

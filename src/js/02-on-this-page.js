@@ -9,13 +9,12 @@
 
   var articleSelector = 'article.doc'
   var article = document.querySelector(articleSelector)
-  if (!article) return
   var headingsSelector = []
   for (var level = 0; level <= levels; level++) {
     var headingSelector = [articleSelector]
     if (level) {
       for (var l = 1; l <= level; l++) headingSelector.push((l === 2 ? '.sectionbody>' : '') + '.sect' + l)
-      headingSelector.push('h' + (level + 1) + '[id]' + (level > 1 ? ':not(.discrete)' : ''))
+      headingSelector.push('h' + (level + 1) + '[id]')
     } else {
       headingSelector.push('h1[id].sect0')
     }

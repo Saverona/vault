@@ -1,20 +1,13 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item logo" href="{{{or site.url siteRootPath}}}" title="{{site.title}}">
-        <img src="{{{uiRootPath}}}/img/logo.svg" alt="ДВ-Лого" width="24"></a>
-      <a class="navbar-item title" href="{{{or site.url siteRootPath}}}">{{site.title}}</a>
-      {{#if env.SITE_SEARCH_PROVIDER}}
-      {{#if (eq page.layout 'home')}}
-      {{else}}
-      <div class="navbar-item search hide-for-print">
-        <div id="search-field" class="field">
-          <input id="search-input" type="text" placeholder="Поиск"{{#if page.home}} autofocus{{/if}}>
-        </div>
+      <div class="navbar-item">
+        <div class="syn_logo"></div>
+        <a href="{{or site.url (or siteRootUrl siteRootPath)}}">{{site.title}}
+          {{#unless (eq page.componentVersion.displayVersion "master")}}{{#unless (eq page.layout '404')}} –
+          v{{page.componentVersion.displayVersion}}{{/unless}}{{/unless}}</a>
       </div>
-      {{/if}}
-      {{/if}}
-      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Развернуть главное меню">
+      <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
@@ -22,49 +15,43 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-      {{#if (eq env.ANTORA_PROD_BUILD 'true')}}
-        <div class="navbar-item has-dropdown is-hoverable version-toggler">
-          <div class="navbar-link">
-		    {{#if (eq site.url '/dv5')}}
-		    Docsvision 5
-			{{else}}
-			Docsvision Linux Edition
-			{{/if}}
-		  </div>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/dv5">Docsvision 5</a>
-            <a class="navbar-item" href="/dv6">Docsvision Linux Edition</a>
-          </div>
-        </div>
-      {{else}}
-        <div class="navbar-item has-dropdown is-hoverable version-toggler">
-          <div class="navbar-link">
-		    {{#if (eq site.url '/dv5')}}
-		    Docsvision 5
-			{{else}}
-			{{#if (eq site.url '/dv6')}}
-			Docsvision Linux Edition
-			{{else}}
-		    Все версии
-		    {{/if}}
-			{{/if}}
-		  </div>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/">Все версии</a>
-            <a class="navbar-item" href="/dv5/">Docsvision 5</a>
-            <a class="navbar-item" href="/dv6/">Docsvision Linux Edition</a>
-          </div>
-        </div>
-        {{/if}}
-        <a class="navbar-item" href="https://docsvision.com/">Docsvision.com</a>
         <div class="navbar-item has-dropdown is-hoverable">
-          <div class="navbar-link">Дополнительно</div>
-          <div class="navbar-dropdown is-right">
-            <a class="navbar-item" href="https://docsvision.github.io/WebClient-JsDocApi">Справочник JavaScript API модуля Web-клиент</a>
-            <a class="navbar-item" href="https://github.com/Docsvision/WebClient-Samples">Docsvision Web-клиент. Примеры разработки</a>
-            <a class="navbar-item" href="https://docsvision.com/info-centr/istoriya-izmeneniy-docsvision">История изменений Docsvision</a>
-            <a class="navbar-item" href="https://docsvision.itsm365.com/sd/">Портал технической поддержки Docsvision</a>
+          <a class="navbar-link" href="#">Tools</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://syn.tools/commodore/">Commodore</a>
+            <a class="navbar-item" href="https://hub.syn.tools/" target="_blank" >Commodore Components Hub</a>
+            <a class="navbar-item" href="https://syn.tools/lieutenant-api/">Lieutenant API</a>
+            <a class="navbar-item" href="https://syn.tools/lieutenant-operator/">Lieutenant Operator</a>
+            <a class="navbar-item" href="https://syn.tools/steward/">Steward</a>
+            <a class="navbar-item" href="https://k8up.io/" target="_blank">K8up</a>
           </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">
+            <div class="vshn-unified-logo"></div>
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" target="_blank" href="https://www.vshn.ch/">Main website</a>
+            <a class="navbar-item" target="_blank" href="https://handbook.vshn.ch/">Handbook</a>
+            <a class="navbar-item" target="_blank" href="https://kb.vshn.ch/">Knowledge Base</a>
+            <a class="navbar-item" target="_blank" href="https://products.docs.vshn.ch/">Products</a>
+            <a class="navbar-item" target="_blank" href="https://legal.docs.vshn.ch/">Legal</a>
+            <a class="navbar-item" target="_blank" href="https://control.docs.vshn.ch/">Portal Help</a>
+            <a class="navbar-item" target="_blank" href="https://docs.appuio.ch/">APPUiO Documentation</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <div class="search-field">
+            <input id="search-input" class="search-input" type="search" placeholder="Search">
+            <button type="submit" class="search-button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-item" href="https://github.com/projectsyn/" target="_blank"><i
+              class="fa fa-github" style="font-size: 30px;"></i>&nbsp;
+            GitHub</a>
         </div>
       </div>
     </div>

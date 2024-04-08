@@ -4,36 +4,78 @@ Author Name
 :idseparator: -
 :!example-caption:
 :!table-caption:
-//:page-role: -toc
 :page-pagination:
 
-[.float-group]
---
-image:multirepo-ssg.svg[Multirepo SSG,180,135,float=right,role=float-gap]
+image:multirepo-ssg.svg[Multirepo SSG,200,float=right]
 Platonem complectitur mediocritatem ea eos.
 Ei nonumy deseruisse ius.
 Mel id omnes verear.
 Vis no velit audiam, sonet <<dependencies,praesent>> eum ne.
 *Prompta eripuit* nec ad.
 Integer diam enim, dignissim eget eros et, ultricies mattis odio.
---
-
 Vestibulum consectetur nec urna a luctus.
 Quisque pharetra tristique arcu fringilla dapibus.
 https://example.org[Curabitur,role=unresolved] ut massa aliquam, cursus enim et, accumsan lectus.
-Mauris eget leo nunc, nec tempus mi? Curabitur id nisl mi, ut vulputate urna.
+
+== SDD Summary Tables
+
+:sdd_author:    Author Name
+:sdd_owner:     SIG Syn
+:sdd_reviewers: SIG Syn
+:sdd_date:      2019-10-18
+:sdd_status:    obsolete
+
+[.meta-info-table,cols="2*"]
+|===
+| Author
+| {sdd_author}
+
+| Owner
+| {sdd_owner}
+
+| Reviewers (SIG)
+| {sdd_reviewers}
+
+| Date
+| {sdd_date}
+
+| Status
+| [.{sdd_status} .status-macro]#{sdd_status}#
+|===
+
+== SDD Status
+
+* [.obsolete .status-macro]#obsolete#
+* [.implemented .status-macro]#implemented#
+* [.rejected .status-macro]#rejected#
+* [.accepted .status-macro]#accepted#
+* [.draft .status-macro]#draft#
+* [.speculative .status-macro]#speculative#
+
+== MathJax
+
+This is the solution of a famous equation
+
+\begin{array}{c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & when & {ax^2 + bx + c = 0} \end{array}
+
+== Icons
+
+Big heart: icon:heart[size=2x]
+
+Tags: icon:tags[role="blue"]
+
+Bolt: icon:bolt[fw]
+
+GitHub: icon:github[]
 
 == Cu solet
 
 Nominavi luptatum eos, an vim hinc philosophia intellegebat.
 Lorem pertinacia `expetenda` et nec, [.underline]#wisi# illud [.line-through]#sonet# qui ea.
-H~2~0.
-E = mc^2^.
-*Alphabet* *алфавит* _алфавит_ *_алфавит_*.
 Eum an doctus <<liber-recusabo,maiestatis efficiantur>>.
-Eu mea inani iriure.footnote:[Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae! Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
+Eu mea inani iriure.
 
-[,json]
+[source,json]
 ----
 {
   "name": "module-name",
@@ -48,7 +90,7 @@ Eu mea inani iriure.footnote:[Quisque porta facilisis tortor, vitae bibendum vel
 ----
 
 .Example paragraph syntax
-[,asciidoc]
+[source,asciidoc]
 ----
 .Optional title
 [example]
@@ -58,110 +100,24 @@ This is an example paragraph.
 .Optional title
 [example]
 This is an example paragraph.
-
-.Summary *Spoiler Alert!*
-[%collapsible]
-====
-Details.
-
-Loads of details.
-====
-
-[,asciidoc]
-----
-Voila!
-----
-
-.Result
-[%collapsible.result]
-====
-Voila!
-====
-
-Tabs with nested tabs.
-
-[tabs]
-====
-Windows::
-+
-Execute the following commands in PowerShell:
-+
-[,bash]
-----
-choco install stuff
-----
-
-Linux::
-+
---
-For Linux distributions, the process changes according to the distribution:
-
-[tabs]
-======
-Fedora/RedHat::
-+
-Execute the following commands on the terminal:
-+
-[,bash]
-----
-sudo yum update
-----
-
-Debian/Ubuntu::
-+
-Execute the following commands on the terminal:
-+
-[,bash]
-----
-sudo apt update
-sudo apt install
-----
-======
---
-====
-
-Tabs with wide table content.
-
-[tabs]
-====
-Tab A:: Content
-
-Tab B::
-* one
-* two
-* three
-
-Tab C::
-+
-|===
-|AAAAAAAAAAAAAAAAAAAA |BBBBBBBBBBBBBBBBBBBBBBBB |CCCCCCCCCCCCCCCCCCCCC |DDDDDDDDDDDDDDDDDDDD
-
-|cell
-|cell
-|cell
-|cell
-|===
-====
-
-There you have it.
 
 === Some Code
 
 How about some code?
 
-[,js]
+[source,js]
 ----
 vfs
   .src('js/vendor/*.js', { cwd: 'src', cwdbase: true, read: false })
-  .pipe(tap((file) => { // <.>
+  .pipe(tap((file) => { // <1>
     file.contents = browserify(file.relative, { basedir: 'src', detectGlobals: false }).bundle()
   }))
-  .pipe(buffer()) // <.>
+  .pipe(buffer()) // <2>
   .pipe(uglify())
   .pipe(gulp.dest('build'))
 ----
-<.> The `tap` function is used to wiretap the data in the pipe.
-<.> Wrap each streaming file in a buffer so the files can be processed by uglify.
+<1> The tap function is used to wiretap the data in the pipe.
+<2> Wrap each streaming file in a buffer so the files can be processed by uglify.
 Uglify can only work with buffers, not streams.
 
 Execute these commands to validate and build your site:
@@ -199,21 +155,11 @@ m|"foo\nbar"
 l|foo
 bar
 a|
-[,ruby]
+[source,ruby]
 ----
 puts "foo\nbar"
 ----
 |===
-
-Here we just have some plain text.
-
-[source]
-----
-plain text
-----
-
-[.rolename]
-=== Liber recusabo
 
 Select menu:File[Open Project] to open the project in your IDE.
 Per ea btn:[Cancel] inimicus.
@@ -229,13 +175,12 @@ Altera atomorum his ex, has cu elitr melius propriae.
 Eos suscipit scaevola at.
 ****
 
+=== Liber recusabo
+
 No sea, at invenire voluptaria mnesarchum has.
 Ex nam suas nemore dignissim, vel apeirian democritum et.
 At ornatus splendide sed, phaedrum omittantur usu an, vix an noster voluptatibus.
 
----
-
-.Ordered list with customized numeration
 [upperalpha]
 . potenti donec cubilia tincidunt
 . etiam pulvinar inceptos velit quisque aptent himenaeos
@@ -244,7 +189,6 @@ At ornatus splendide sed, phaedrum omittantur usu an, vix an noster voluptatibus
 Natum facilisis theophrastus an duo.
 No sea, at invenire voluptaria mnesarchum has.
 
-.Unordered list with customized marker
 [square]
 * ultricies sociosqu tristique integer
 * lacus volutpat semper porttitor aliquet ornare primis nulla enim
@@ -252,13 +196,6 @@ No sea, at invenire voluptaria mnesarchum has.
 
 Eu sed antiopam gloriatur.
 Ea mea agam graeci philosophia.
-
-[circle]
-* circles
-** circles
-*** and more circles!
-
-At ornatus splendide sed, phaedrum omittantur usu an, vix an noster voluptatibus.
 
 * [ ] todo
 * [x] done!
@@ -269,7 +206,6 @@ sed::
 splendide sed
 
 mea::
-tad::
 agam graeci
 
 Let's look at that another way.
@@ -353,11 +289,7 @@ Don't forget this step!
 ====
 If you installed the CLI and the default site generator globally, you can upgrade both of them with the same command.
 
- $ npm i -g @antora/cli @antora/site-generator
-
-Or you can install the metapackage to upgrade both packages at once.
-
- $ npm i -g antora
+ $ npm i -g @antora/cli @antora/site-generator-default
 ====
 
 Nominavi luptatum eos, an vim hinc philosophia intellegebat.
@@ -366,23 +298,14 @@ Eu mea inani iriure.
 [discrete]
 == Voluptua singulis
 
-[discrete]
-=== Nominavi luptatum
-
 Cum dicat putant ne.
 Est in reque homero principes, meis deleniti mediocrem ad has.
 Ex nam suas nemore dignissim, vel apeirian democritum et.
 
 .Antora is a multi-repo documentation site generator
-image::multirepo-ssg.svg[Multirepo SSG,3000,opts=interactive]
-
-.Let's see that again, but a little smaller
-image::multirepo-ssg.svg[Multirepo SSG,300,role=text-left]
+image::multirepo-ssg.svg[Multirepo SSG,250]
 
 Make the switch today!
-
-.Full Circle with Jake Blauvelt
-video::300817511[vimeo,640,360,align=left]
 
 [#english+中文]
 == English + 中文
@@ -390,12 +313,11 @@ video::300817511[vimeo,640,360,align=left]
 Altera atomorum his ex, has cu elitr melius propriae.
 Eos suscipit scaevola at.
 
-[,'Famous Person. Cum dicat putant ne.','Cum dicat putant ne. https://example.com[Famous Person Website]']
+[quote, 'Famous Person. Cum dicat putant ne.', 'Cum dicat putant ne. https://example.com[Famous Person Website]']
 ____
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Mauris eget leo nunc, nec tempus mi? Curabitur id nisl mi, ut vulputate urna.
-Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae!
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae! Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Mauris eget leo nunc, nec tempus mi? Curabitur id nisl mi, ut vulputate urna.
 Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae!
 ____
