@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Registration of a new user :: Vault Docs</title>
+    <title>Confirm Phone Number :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -107,41 +107,24 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Registration.html"><strong>Registration of a new user</strong></a></li>
+    <li><a href="resend-code.html"><strong>Confirm Phone Number</strong></a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Registration.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/resend-code.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Registration of a new user</strong></h1>
+<h1 class="page"><strong>Confirm Phone Number</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> v2/mobile/signup</strong></p>
+<p><strong><code>POST</code> /v2/mobile/phone/verify/resend</strong></p>
 </div>
 <div class="paragraph">
-<p>This endpoint is designed for registering a new user in a mobile application or service using a phone number as the primary identifier.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><strong>When re-registering in the system, it is necessary to use a new phone number that has not been used before.</strong></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>User registration involves providing necessary information such as the phone number and chosen password.</p>
+<p>If the initial verification code for a phone number has not been received or has expired, this API allows users to request a new verification code to be sent to the provided phone number. It is a resend mechanism to ensure users can successfully complete the phone verification process.</p>
 </div>
 </div>
 </div>
@@ -158,17 +141,13 @@ Identification of requests from users of a specific partner.
 Default: <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
 </li>
 <li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-Default: <code>1.2</code></p>
-</li>
-<li>
-<p><strong>X-Fingerprint</strong>: string
-Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault.wiki.git">here</a>.</p>
+<p><strong>X-Fingerprint</strong>: string (required)
+Indicates whether fingerprint login has been performed in the application. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault/wiki/Digital-signature-verification-and-fingerprint">here</a>.
+Default: <code>1234444</code></p>
 </li>
 <li>
 <p><strong>X-Signature</strong>: string
-Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests.</p>
+Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). It is used for verifying the authenticity of requests. The HMAC_SHA256 algorithm is utilized to generate the signature, employing a shared secret key.</p>
 </li>
 </ul>
 </div>
@@ -178,19 +157,11 @@ Contains a digital signature generated both on the server-side (backend) and the
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
 <div class="ulist">
-<div class="title">Media Type: <strong>application/json</strong></div>
+<div class="title">Media Type: <code><strong>application/json</strong></code></div>
 <ul>
 <li>
-<p><strong>phone</strong>: string (Required)
-The phone number needed for registration.</p>
-</li>
-<li>
-<p><strong>password</strong>: string (Required)
-The password required for registration. See password creation rule.</p>
-</li>
-<li>
-<p><strong>analyticsCallback</strong>: string
-Optional parameter for transmitting analytics data</p>
+<p><strong>phone</strong>: string (<strong>Required</strong>)
+Telephone number, which must be specified during registration.</p>
 </li>
 </ul>
 </div>
@@ -200,9 +171,7 @@ Optional parameter for transmitting analytics data</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
+  "phone": "+447871234567"
 }</code></pre>
 </div>
 </div>
@@ -215,18 +184,15 @@ Optional parameter for transmitting analytics data</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
-     --url https://api.vault.sandbox.testessential.net/v2/mobile/signup \
-     --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-     --header 'X-Version: 1.2' \
-     --header 'accept: application/json' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
-}
-'</code></pre>
+  --url https://api.vault.sandbox.testessential.net/v2/mobile/phone/verify/resend \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'X-Fingerprint: 1234444' \
+  --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
+  --header 'X-Signature: ' \
+  --data '{
+  "phone": "+447871234567"
+}'</code></pre>
 </div>
 </div>
 </div>
@@ -239,14 +205,14 @@ Optional parameter for transmitting analytics data</p>
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - Success Response</code></strong></p>
+<p><strong><code>200 - OK</code></strong></p>
 </div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
 <div class="paragraph collapsible-content">
-<div class="title"><strong>result</strong>: string</div>
-<p>Provides information about the outcome of the registration operation.</p>
+<div class="title"><strong>result:</strong> string</div>
+<p>Response indicating the result of the resend code operation.</p>
 </div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
@@ -325,19 +291,6 @@ Optional parameter for transmitting analytics data</p>
   "systemId": "core"
 }</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>403 - Account Duplication (Phone Number Uniqueness Check)</code></strong></p>
-</div>
-<div class="paragraph">
-<p>Errors related to account duplication and phone number uniqueness check.</p>
-</div>
-<div class="paragraph">
-<p>If a user attempts to register with a phone number already in the database, they will not receive an error message during the waiting period for SMS confirmation. This is a security measure to prevent unauthorized access to accounts.</p>
 </div>
 </div>
 </div>

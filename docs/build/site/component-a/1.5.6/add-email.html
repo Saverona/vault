@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Registration of a new user :: Vault Docs</title>
+    <title>Add Email :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -107,24 +107,24 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Registration.html"><strong>Registration of a new user</strong></a></li>
+    <li><a href="add-email.html"><strong>Add Email</strong></a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Registration.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/add-email.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Registration of a new user</strong></h1>
+<h1 class="page"><strong>Add Email</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> v2/mobile/signup</strong></p>
+<p><strong><code>PUT</code> /v2/mobile/email/add</strong></p>
 </div>
 <div class="paragraph">
-<p>This endpoint is designed for registering a new user in a mobile application or service using a phone number as the primary identifier.</p>
+<p>This endpoint is designed for adding a new email address to a user&#8217;s account.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -134,14 +134,12 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>When re-registering in the system, it is necessary to use a new phone number that has not been used before.</strong></p>
+<p>🚧 Changing the email address manually by the user is not available.
+The email address can only be changed through customer support.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>User registration involves providing necessary information such as the phone number and chosen password.</p>
 </div>
 </div>
 </div>
@@ -149,48 +147,15 @@
 <h2 id="_request"><a class="anchor" href="#_request"></a><strong>Request</strong></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_headers"><a class="anchor" href="#_headers"></a><strong>Headers</strong></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>X-Merchant-ID</strong>: string (required)
-Identification of requests from users of a specific partner.
-Default: <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
-</li>
-<li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-Default: <code>1.2</code></p>
-</li>
-<li>
-<p><strong>X-Fingerprint</strong>: string
-Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault.wiki.git">here</a>.</p>
-</li>
-<li>
-<p><strong>X-Signature</strong>: string
-Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
 <div class="ulist">
-<div class="title">Media Type: <strong>application/json</strong></div>
+<div class="title">Media Type: <code><strong>application/json</strong></code></div>
 <ul>
 <li>
-<p><strong>phone</strong>: string (Required)
-The phone number needed for registration.</p>
-</li>
-<li>
-<p><strong>password</strong>: string (Required)
-The password required for registration. See password creation rule.</p>
-</li>
-<li>
-<p><strong>analyticsCallback</strong>: string
-Optional parameter for transmitting analytics data</p>
+<p><strong>email</strong>: string (required)
+The new email address to be added to the user&#8217;s account.</p>
 </li>
 </ul>
 </div>
@@ -200,9 +165,7 @@ Optional parameter for transmitting analytics data</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
+  "email": "partner@gmail.com"
 }</code></pre>
 </div>
 </div>
@@ -214,19 +177,14 @@ Optional parameter for transmitting analytics data</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
-     --url https://api.vault.sandbox.testessential.net/v2/mobile/signup \
-     --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-     --header 'X-Version: 1.2' \
-     --header 'accept: application/json' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
-}
-'</code></pre>
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request PUT \
+  --url https://crpt-backend-main-service.sandbox.testessential.net/v2/mobile/email/add \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTU0ZDc0My05ZDExLTQ5YTEtYTMyMy03YmRmOGQ4NDdjMjEiLCJleHAiOjE3MDk3MjQ1NjQsImlhdCI6MTcwOTYzODE2NH0.deZXGfjS7oVprz2XoZseeYa7l8ti8aAJaELBeDDtglI' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "email": "partner@gmail.com"
+}'</code></pre>
 </div>
 </div>
 </div>
@@ -239,14 +197,14 @@ Optional parameter for transmitting analytics data</p>
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - Success Response</code></strong></p>
+<p><strong><code>200 - Success response</code></strong></p>
 </div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
 <div class="paragraph collapsible-content">
-<div class="title"><strong>result</strong>: string</div>
-<p>Provides information about the outcome of the registration operation.</p>
+<div class="title"><strong>result:</strong> string</div>
+<p>Response indicating the result of the operation.</p>
 </div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
@@ -331,13 +289,109 @@ Optional parameter for transmitting analytics data</p>
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>403 - Account Duplication (Phone Number Uniqueness Check)</code></strong></p>
+<p><strong>168 - The system checks the uniqueness of the email</strong></p>
 </div>
 <div class="paragraph">
-<p>Errors related to account duplication and phone number uniqueness check.</p>
+<p>Email uniqueness verification in the system involves checking whether an email address is already registered. After confirming the email, attempting to register the same email address will result in a message stating that such an address already exists.</p>
 </div>
 <div class="paragraph">
-<p>If a user attempts to register with a phone number already in the database, they will not receive an error message during the waiting period for SMS confirmation. This is a security measure to prevent unauthorized access to accounts.</p>
+<div class="title"><strong>message</strong>: string</div>
+<p>Message that will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId</strong>: integer</div>
+<p>Integer identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId</strong>: string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error</strong>: string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "EMAIL_IS_ALREADY_REGISTERED",
+  "errorId": 168,
+  "message": "Email is already registered",
+  "systemId": "core"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p><strong>310 - The system detects that the email has already been confirmed</strong></p>
+</div>
+<div class="paragraph">
+<p>The system detects that the email has already been confirmed When attempting to confirm an email address, the system verifies whether the email has already been confirmed in the past. If the email has been previously confirmed, a message is returned instructing the user to contact support in order to change the email.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>message</strong>: string</div>
+<p>Message that will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId</strong>: integer</div>
+<p>Integer identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId</strong>: string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error</strong>: string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "EMAIL_ALREADY_CONFIRMED",
+  "errorId": 310,
+  "message": "Your email has been previously confirmed. Please contact support to change email",
+  "systemId": "core"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p><strong>422 - The system validates the email format</strong></p>
+</div>
+<div class="paragraph">
+<p>The system detects that the email has already been confirmed When attempting to confirm an email address, the system verifies whether the email has already been confirmed in the past. If the email has been previously confirmed, a message is returned instructing the user to contact support in order to change the email.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>message</strong>: string</div>
+<p>Message that will be displayed to the user.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId</strong>: integer</div>
+<p>Integer identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId</strong>: string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error</strong>: string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "NOT_VALID_REQUEST_DATA",
+  "field": "email",
+  "errorId": 422,
+  "message": "Please enter a valid email",
+  "systemId": "core"
+}</code></pre>
+</div>
 </div>
 </div>
 </div>

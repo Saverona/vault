@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Admonition :: Vault Docs</title>
+    <title>Authorization :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -64,7 +64,7 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="Authorization.html">Authorization</a>
 <ul class="nav-list">
@@ -107,174 +107,42 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="admonition.html">Admonition</a></li>
+    <li><a href="Authorization.html">Authorization</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/admonition.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Authorization.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Admonition</h1>
-<div class="sect1">
-<h2 id="_admonition_styles"><a class="anchor" href="#_admonition_styles"></a>Admonition styles</h2>
+<h1 class="page">Authorization</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>An admonition, also known as a notice, helps draw attention to a line or block of text with a special label or icon.</p>
+<p>The <code>Authorization</code> section in Vault is designed to manage user authentication and authorization. This section ensures secure access to the system&#8217;s functionality by overseeing the processes of <a href="https://api-vault.readme.io/docs/signin-process">SignIn</a> and <a href="https://api-vault.readme.io/docs/logout-process">SignOut</a>.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Asciidoctor comes with five built-in styles.</p>
+<p>This section provides two endpoints that enable the following actions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>NOTE</p>
+<p><strong>User Authentication:</strong> This process is facilitated by the <code>POST /oauth/token</code> endpoint. Specifically designed for user authentication, it generates an OAuth access token upon successful authentication, allowing secure requests to resources.</p>
 </li>
 <li>
-<p>TIP</p>
-</li>
-<li>
-<p>IMPORTANT</p>
-</li>
-<li>
-<p>CAUTION</p>
-</li>
-<li>
-<p>WARNING</p>
+<p><strong>User Logout:</strong> The <code>POST /signout</code> endpoint is intended for user logout and the invalidation of access tokens. Upon calling this endpoint, the server deauthorizes the user and invalidates the current access token.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_basic_admonition"><a class="anchor" href="#_basic_admonition"></a>Basic admonition</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">Basic admonitions</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CAUTION: Don't stick forks in electric sockets.
-
-TIP: After someone sticks a fork in a socket, you'll need to reset the circuit in the breaker box in the dark and scary basement.
-
-WARNING: Never go into the basement.
-
-IMPORTANT: A monster lives in the basement.
-
-NOTE: If you go into the basement, see if you can find Kenny's orange parka.</code></pre>
-</div>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-Don&#8217;t stick forks in electric sockets.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-After someone sticks a fork in a socket, you&#8217;ll need to reset the circuit in the breaker box in the dark and scary basement.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Never go into the basement.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-A monster lives in the basement.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you go into the basement, see if you can find Kenny&#8217;s orange parka.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_complex_admonition"><a class="anchor" href="#_complex_admonition"></a>Complex admonition</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">Example block masquerading as an admonition</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[IMPORTANT]
-.Optional title
-====
-Use an example block to create an admonition that contains complex content, such as (but not limited to):
-
-* Lists
-* Multiple paragraphs
-* Source code
-* Images
-====</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Optional title</div>
 <div class="paragraph">
-<p>Use an example block to create an admonition that contains complex content, such as (but not limited to):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Lists</p>
-</li>
-<li>
-<p>Multiple paragraphs</p>
-</li>
-<li>
-<p>Source code</p>
-</li>
-<li>
-<p>Images</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
+<p>These endpoints play a crucial role in user authentication and session management within the system.</p>
 </div>
 </div>
 </div>

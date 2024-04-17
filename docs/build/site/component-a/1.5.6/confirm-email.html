@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Registration of a new user :: Vault Docs</title>
+    <title>Confirm Email :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -107,24 +107,24 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Registration.html"><strong>Registration of a new user</strong></a></li>
+    <li><a href="confirm-email.html"><strong>Confirm Email</strong></a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Registration.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/confirm-email.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Registration of a new user</strong></h1>
+<h1 class="page"><strong>Confirm Email</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> v2/mobile/signup</strong></p>
+<p><strong><code>GET</code> /v2/mobile/email/confirm</strong></p>
 </div>
 <div class="paragraph">
-<p>This endpoint is designed for registering a new user in a mobile application or service using a phone number as the primary identifier.</p>
+<p>The endpoint is to confirm an email address.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -134,14 +134,11 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>When re-registering in the system, it is necessary to use a new phone number that has not been used before.</strong></p>
+<p>🚧 The data must be encoded in <strong>base64</strong> format using your frontend</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>User registration involves providing necessary information such as the phone number and chosen password.</p>
 </div>
 </div>
 </div>
@@ -149,85 +146,25 @@
 <h2 id="_request"><a class="anchor" href="#_request"></a><strong>Request</strong></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_headers"><a class="anchor" href="#_headers"></a><strong>Headers</strong></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>X-Merchant-ID</strong>: string (required)
-Identification of requests from users of a specific partner.
-Default: <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
-</li>
-<li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-Default: <code>1.2</code></p>
-</li>
-<li>
-<p><strong>X-Fingerprint</strong>: string
-Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault.wiki.git">here</a>.</p>
-</li>
-<li>
-<p><strong>X-Signature</strong>: string
-Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
 <div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
+<h4 id="_query_parameters"><a class="anchor" href="#_query_parameters"></a><strong>Query Parameters</strong></h4>
 <div class="ulist">
-<div class="title">Media Type: <strong>application/json</strong></div>
+<div class="title">Media Type: application/json</div>
 <ul>
 <li>
-<p><strong>phone</strong>: string (Required)
-The phone number needed for registration.</p>
+<p><strong>email</strong>: string (required)
+The email address to be confirmed.</p>
 </li>
 <li>
-<p><strong>password</strong>: string (Required)
-The password required for registration. See password creation rule.</p>
+<p><strong>event</strong>: string (required)
+The event related to the email confirmation.</p>
 </li>
 <li>
-<p><strong>analyticsCallback</strong>: string
-Optional parameter for transmitting analytics data</p>
+<p><strong>token</strong>: string (required)
+The token associated with the email confirmation process. It is sent to the user via email as part of the confirmation process. EMAIL_ADD is encoded in Base64 format.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_example_body"><a class="anchor" href="#_example_body"></a><strong>Example body</strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a><strong>Request Sample: cURL</strong></h4>
-<div class="paragraph">
-<p>At the time of sending the request, the curl command should be as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
-     --url https://api.vault.sandbox.testessential.net/v2/mobile/signup \
-     --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-     --header 'X-Version: 1.2' \
-     --header 'accept: application/json' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "phone": "+447871234567",
-  "password": "1234Qwerty",
-  "analyticsCallback": "string"
-}
-'</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -239,14 +176,14 @@ Optional parameter for transmitting analytics data</p>
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - Success Response</code></strong></p>
+<p><strong><code>200 - Success response</code></strong></p>
 </div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
 <div class="paragraph collapsible-content">
-<div class="title"><strong>result</strong>: string</div>
-<p>Provides information about the outcome of the registration operation.</p>
+<div class="title"><strong>result:</strong> string</div>
+<p>indicates the result of the email address confirmation operation.</p>
 </div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
@@ -325,19 +262,6 @@ Optional parameter for transmitting analytics data</p>
   "systemId": "core"
 }</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>403 - Account Duplication (Phone Number Uniqueness Check)</code></strong></p>
-</div>
-<div class="paragraph">
-<p>Errors related to account duplication and phone number uniqueness check.</p>
-</div>
-<div class="paragraph">
-<p>If a user attempts to register with a phone number already in the database, they will not receive an error message during the waiting period for SMS confirmation. This is a security measure to prevent unauthorized access to accounts.</p>
 </div>
 </div>
 </div>
