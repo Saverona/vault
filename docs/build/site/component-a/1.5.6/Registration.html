@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Registration of a new user :: Vault Docs</title>
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Vault Docs</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="component-a" data-version="1.5.6">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="Introduction.html">Component A</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="signup.html">Signup</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="Registration.html">Registration of a new user</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#confirm-phone-number.md">Confirm Phone Number</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="inline-text-formatting.html">Inline Text Formatting</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="special-characters.html">Special Characters and Symbols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="admonition.html">Admonition</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="sidebar.html">Sidebar</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ui-macros.html">User Interface Macros</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Component A</span>
+    <span class="version">1.5.6</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="Introduction.html">Component A</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="Introduction.html">1.5.6</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="Introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="Introduction.html">Component A</a></li>
+    <li><a href="signup.html">Signup</a></li>
+    <li><a href="Registration.html">Registration of a new user</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Registration.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Registration of a new user</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">This endpoint is designed for [registering] a new user in a mobile application or service using a phone number as the primary identifier.</div>
+<div class="paragraph">
+<p>When re-registering in the system, it is necessary to use a new phone number that has not been used before.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>User registration involves providing necessary information such as the phone number and chosen password.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "X-Merchant-ID": {
+    "type": "string",
+    "required": true,
+    "description": "Identification of requests from users of a specific partner.",
+    "default": "bece038f-2e46-49f4-b25e-89cd38d6dc16"
+  },
+  "X-Version": {
+    "type": "string",
+    "required": true,
+    "description": "Version fingerprint.",
+    "default": "1.2"
+  },
+  "X-Fingerprint": {
+    "type": "string",
+    "description": "Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed link:https://github.com/crypterium-com/api-vault.wiki.git[here]."
+  },
+  "X-Signature": {
+    "type": "string",
+    "description": "Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests."
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_request"><a class="anchor" href="#_request"></a>Request</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_headers"><a class="anchor" href="#_headers"></a>Headers</h3>
+<div class="paragraph">
+<div class="title">X-Merchant-ID: string (required)</div>
+<p>Identification of requests from users of a specific partner.
+.Default: <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
+</div>
+<div class="paragraph">
+<div class="title">X-Version: string (required)</div>
+<p>Version fingerprint.
+.Default: <code>1.2</code></p>
+</div>
+<div class="paragraph">
+<div class="title">X-Fingerprint: string</div>
+<p>Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault.wiki.git">here</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">X-Signature: string</div>
+<p>Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_body"><a class="anchor" href="#_body"></a>Body</h3>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
+<div class="ulist">
+<div class="title">Media Type: <code>application/json</code></div>
+<ul>
+<li>
+<p><strong>phone</strong>: string (Required)</p>
+</li>
+<li>
+<p>The phone number needed for registration.</p>
+</li>
+<li>
+<p><strong>password</strong>: string (Required)</p>
+</li>
+<li>
+<p>The password required for registration. See password creation rule link_to_rule[].</p>
+</li>
+<li>
+<p><strong>analyticsCallback</strong>: string</p>
+</li>
+<li>
+<p>Optional parameter for transmitting analytics data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_body"><a class="anchor" href="#_example_body"></a><strong>Example body</strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "phone": "+447871234567",
+  "password": "1234Qwerty",
+  "analyticsCallback": "string"
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a><strong>Request Sample: cURL</strong></h5>
+<div class="paragraph">
+<p>At the time of sending the request, the curl command should be as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
+     --url https://api.vault.sandbox.testessential.net/v2/mobile/signup \
+     --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
+     --header 'X-Version: 1.2' \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "phone": "+447871234567",
+  "password": "1234Qwerty",
+  "analyticsCallback": "string"
+}
+'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
+<div class="sectionbody">
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p>=== 200 - Success Response</p>
+</div>
+<div class="paragraph">
+<p>The response status code indicates that the request was successfully processed.</p>
+</div>
+<div class="paragraph collapsible-content">
+<p><strong>Media type:</strong> <code>application/json</code></p>
+</div>
+<div class="paragraph">
+<p><strong>result:</strong> string
+Provides information about the outcome of the registration operation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "result": "ok"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p>=== 400 - Bad Request</p>
+</div>
+<div class="paragraph">
+<p>The response status code indicates that the requested page was not found on the server.</p>
+</div>
+<div class="paragraph collapsible-content">
+<p><strong>Media type:</strong> <code>application/json</code></p>
+</div>
+<div class="paragraph">
+<p><strong>message:</strong> string
+Message displayed to the user.</p>
+</div>
+<div class="paragraph">
+<p><strong>field:</strong> string
+Specifies the field in the request that caused the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>errorId:</strong> integer
+Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>systemId:</strong> string
+Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<p><strong>originalMessage:</strong> string
+The original error message.</p>
+</div>
+<div class="paragraph">
+<p><strong>errorStackTrace:</strong> string
+The place where the error occurred in the code.</p>
+</div>
+<div class="paragraph">
+<p><strong>data:</strong> object
+Additional data related to the error, structured as key-value pairs.
+- <strong>additionalProp1:</strong> object
+- <strong>additionalProp2:</strong> object
+- <strong>additionalProp3:</strong> object</p>
+</div>
+<div class="paragraph">
+<p><strong>error:</strong> string
+Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "COMMON",
+  "errorId": 0,
+  "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
+  "systemId": "core"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p>=== 403 - Account Duplication (Phone Number Uniqueness Check)</p>
+</div>
+<div class="paragraph">
+<p>Errors related to account duplication and phone number uniqueness check.</p>
+</div>
+<div class="paragraph">
+<p>If a user attempts to register with a phone number already in the database, they will not receive an error message during the waiting period for SMS confirmation. This is a security measure to prevent unauthorized access to accounts.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
