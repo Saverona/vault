@@ -236,6 +236,41 @@
 </div>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": "string",
+      "description": "Represents the recipient's wallet address.",
+      "example": "0x9A6034c84cd431409Ac1a35278c7Da36FfDa53E5"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Represents the recipient's phone number.",
+      "example": "+1234567890"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Represents the amount of coins to be sent.",
+      "example": 10
+    },
+    "currency": {
+      "type": "string",
+      "description": "Specifies the currency in which the coins are denoted.",
+      "example": "USDT"
+    },
+    "fee": {
+      "type": "integer",
+      "description": "A number representing the transaction fee.",
+      "example": 16.714556
+    }
+  },
+  "required": ["address", "phone", "amount", "currency", "fee"]
+}</code></pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
