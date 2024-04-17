@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Add Email :: Vault Docs</title>
+    <title>Create Wallets :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -70,7 +70,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="resend-code.html">Resend Code</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="add-email.html">Add Email</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -115,7 +115,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="Wallet.html">Wallet</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="create-wallets.html">Create Wallets</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,40 +190,114 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="signup.html">Signup</a></li>
-    <li><a href="add-email.html">Add Email</a></li>
+    <li><a href="Wallet.html">Wallet</a></li>
+    <li><a href="create-wallets.html">Create Wallets</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/add-email.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/create-wallets.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Add Email</strong></h1>
+<h1 class="page"><strong>Create Wallets</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>PUT</code> /v2/mobile/email/add</strong></p>
+<p><strong><code>POST</code> /v2/wallets</strong></p>
 </div>
 <div class="paragraph">
-<p>This endpoint is designed for adding a new email address to a user&#8217;s account.</p>
+<p>The endpoint is intended for creating a wallet for the provided currency.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>🚧 Changing the email address manually by the user is not available.
-The email address can only be changed through customer support.</p>
+<p>In the test environment, wallet creation is only available for the following cryptocurrencies:</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>&lt;details&gt;
+&lt;summary&gt;Cryptocurrencies&lt;/summary&gt;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>BAT</strong></p>
+</li>
+<li>
+<p><strong>BTC</strong></p>
+</li>
+<li>
+<p><strong>CHO</strong></p>
+</li>
+<li>
+<p><strong>CRPT</strong></p>
+</li>
+<li>
+<p><strong>DAI</strong></p>
+</li>
+<li>
+<p><strong>DAO</strong></p>
+</li>
+<li>
+<p><strong>ETH</strong></p>
+</li>
+<li>
+<p><strong>GALA</strong></p>
+</li>
+<li>
+<p><strong>LINK</strong></p>
+</li>
+<li>
+<p><strong>LTC</strong></p>
+</li>
+<li>
+<p><strong>MANA</strong></p>
+</li>
+<li>
+<p><strong>MAPS</strong></p>
+</li>
+<li>
+<p><strong>MATIC</strong></p>
+</li>
+<li>
+<p><strong>MKR</strong></p>
+</li>
+<li>
+<p><strong>OMG</strong></p>
+</li>
+<li>
+<p><strong>QASH</strong></p>
+</li>
+<li>
+<p><strong>REP</strong></p>
+</li>
+<li>
+<p><strong>SAND</strong></p>
+</li>
+<li>
+<p><strong>SHIB</strong></p>
+</li>
+<li>
+<p><strong>UNI</strong></p>
+</li>
+<li>
+<p><strong>USDC</strong></p>
+</li>
+<li>
+<p><strong>USDT</strong></p>
+</li>
+<li>
+<p><strong>XRP</strong></p>
+</li>
+<li>
+<p><strong>ZRX</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&lt;/details&gt;</p>
+</div>
+<div class="paragraph">
+<p>Wallet creation for other cryptocurrencies is not available in the test environment.</p>
 </div>
 </div>
 </div>
@@ -235,11 +309,11 @@ The email address can only be changed through customer support.</p>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
 <div class="ulist">
-<div class="title">Media Type: <code><strong>application/json</strong></code></div>
+<div class="title">Media Type: <strong>application/json</strong></div>
 <ul>
 <li>
-<p><strong>email</strong>: string (required)
-The new email address to be added to the user&#8217;s account.</p>
+<p><strong>currencies</strong>: array of strings <strong>(Required)</strong>
+Currencies for which the wallet needs to be created.</p>
 </li>
 </ul>
 </div>
@@ -249,7 +323,12 @@ The new email address to be added to the user&#8217;s account.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "email": "partner@gmail.com"
+  "currencies": [
+    "BTC",
+    "ETH",
+    "LTC",
+    "XRP"
+  ]
 }</code></pre>
 </div>
 </div>
@@ -261,13 +340,18 @@ The new email address to be added to the user&#8217;s account.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request PUT \
-  --url https://crpt-backend-main-service.sandbox.testessential.net/v2/mobile/email/add \
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
+  --url https://api.vault.sandbox.testessential.net/v2/wallets \
   --header 'Accept: application/json' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTU0ZDc0My05ZDExLTQ5YTEtYTMyMy03YmRmOGQ4NDdjMjEiLCJleHAiOjE3MDk3MjQ1NjQsImlhdCI6MTcwOTYzODE2NH0.deZXGfjS7oVprz2XoZseeYa7l8ti8aAJaELBeDDtglI' \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTFhYTc3Mi0yNDk4LTQ0ZTEtODdmYi0zYzNhZDdlMTY1ODgiLCJleHAiOjE3MTE3ODM4OTYsImlhdCI6MTcxMTY5NzQ5Nn0.GBWhOHEIbiOipMa1kXMsamNqT1I6pFBe3-gZ3me1bM4' \
   --header 'Content-Type: application/json' \
   --data '{
-  "email": "partner@gmail.com"
+  "currencies": [
+    "BTC",
+    "ETH",
+    "LTC",
+    "XRP"
+  ]
 }'</code></pre>
 </div>
 </div>
@@ -281,14 +365,193 @@ The new email address to be added to the user&#8217;s account.</p>
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - Success response</code></strong></p>
+<p><strong><code>201 - Created</code></strong></p>
 </div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
 <div class="paragraph collapsible-content">
-<div class="title"><strong>result:</strong> string</div>
-<p>Response indicating the result of the operation.</p>
+<div class="title"><strong>wallets</strong></div>
+<p>array[object]
+list of created wallets with detailed information for each.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>id</strong>: integer
+wallet identifier in Vault.</p>
+</li>
+<li>
+<p><strong>name</strong>: string
+name of the currency being created.</p>
+</li>
+<li>
+<p><strong>externalId</strong>: string
+external identifier of the wallet in Vault.</p>
+</li>
+<li>
+<p><strong>address</strong>: string
+blockchain network address of a specific coin.</p>
+</li>
+<li>
+<p><strong>currency</strong>: string
+currency of the wallet.
+Example: BTC, ETH, LTC etc.</p>
+</li>
+<li>
+<p><strong>baseCurrency</strong>: string
+base currency of the wallet.</p>
+</li>
+<li>
+<p><strong>pattern</strong>: string
+wallet pattern.</p>
+</li>
+<li>
+<p><strong>balance</strong>: integer
+current balance of the wallet.</p>
+</li>
+<li>
+<p><strong>limits</strong>: object
+wallet limits.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>additionalProp1</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+<li>
+<p><strong>additionalProp2</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+<li>
+<p><strong>additionalProp3</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>balanceString</strong>: string
+string representation of the balance.</p>
+</li>
+<li>
+<p><strong>availableBalance</strong>: integer
+balance that is currently available to the user.</p>
+</li>
+<li>
+<p><strong>customerId</strong>: integer
+identifier of the customer associated with the wallet.</p>
+</li>
+<li>
+<p><strong>createdAt</strong>: string&lt;date-time&gt;
+date and time of wallet creation.
+Match pattern: YYYY-MM-DDThh:mm:ss&lt;TZDSuffix&gt;</p>
+</li>
+<li>
+<p><strong>isDebit</strong>: boolean
+flag indicating whether the wallet is a debit wallet.
+Default: true</p>
+</li>
+<li>
+<p><strong>allowOperations</strong>: array[string]
+specifies the allowed operations with the wallet.</p>
+</li>
+<li>
+<p><strong>color</strong>: string
+color code associated with the wallet.</p>
+</li>
+<li>
+<p><strong>fiat</strong>: object
+information about the wallet in fiat currency.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>customerCurrency</strong>: string
+customer&#8217;s currency.</p>
+</li>
+<li>
+<p><strong>amount</strong>: integer
+a variable that indicates a specific value in rubles.</p>
+</li>
+<li>
+<p><strong>change</strong>: integer
+a variable that displays changes as a percentage (what happened to the wallet during the day) in fiat currency.</p>
+</li>
+<li>
+<p><strong>changePercent</strong>: integer
+in percentage.</p>
+</li>
+<li>
+<p><strong>rate</strong>: integer
+cryptocurrency to customerCurrency conversion rate.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>scale</strong>: integer
+a variable that specifies where the comma appears in a number.</p>
+</li>
+<li>
+<p><strong>stub</strong>: boolean
+indication of a stub or real wallet.
+Default: true</p>
+</li>
+<li>
+<p><strong>walletCreationState</strong>: string
+the variable is intended to display the status of the wallet.
+Allowed values:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ready</strong>: Status means that a real address has been received and the wallet is ready for use.</p>
+</li>
+<li>
+<p><strong>New</strong>: Status means that the wallet has just been created.</p>
+</li>
+<li>
+<p><strong>Getting</strong>: Status means that the wallet is in the process of receiving a real address.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>iconUrl</strong>: string
+link to wallet icon.</p>
+</li>
+<li>
+<p><strong>network</strong>: string
+wallet network.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title"><strong>fiat</strong>: object</div>
+<p>information about user fiat funds.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>customerCurrency</strong>: string
+id, which is stored in the database.</p>
+</li>
+<li>
+<p><strong>amount</strong>: integer
+a variable that indicates a specific value in customerCurrency.</p>
+</li>
+<li>
+<p><strong>change</strong>: integer
+a variable that displays changes as a percentage (what happened to the wallet during the day).</p>
+</li>
+<li>
+<p><strong>changePercent</strong>: integer
+change percentage in fiat currency.</p>
+</li>
+<li>
+<p><strong>rate</strong>: integer
+exchange rate.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
@@ -296,7 +559,166 @@ The new email address to be added to the user&#8217;s account.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "result": "ok"
+  "wallets": [
+    {
+      "id": -1,
+      "fiat": {
+        "rate": 0.12068,
+        "amount": 0,
+        "change": 0,
+        "changePercent": -1.14,
+        "customerCurrency": "EUR"
+      },
+      "name": "TRX",
+      "stub": true,
+      "color": "#EB322A",
+      "debit": true,
+      "scale": 5,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 0,
+          "min": 0.00001
+        }
+      },
+      "address": "",
+      "balance": 0,
+      "currency": "TRX",
+      "customerId": 5787,
+      "balanceString": "0",
+      "allowOperations": [],
+      "availableBalance": 0,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5822,
+      "fiat": {
+        "rate": 0.63421,
+        "amount": 0,
+        "change": 0,
+        "changePercent": 10.87,
+        "customerCurrency": "EUR"
+      },
+      "name": "XRP",
+      "stub": false,
+      "color": "#262A3C",
+      "debit": true,
+      "scale": 6,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 0,
+          "min": 20
+        }
+      },
+      "address": "rnrve1cZDyLv225wv9Xre1nD5EWRjS4CW2?dt=27",
+      "balance": 0,
+      "pattern": "^r[0-9a-zA-Z]{24,34}(\\?dt=\\d+)?$",
+      "currency": "XRP",
+      "customerId": 5787,
+      "balanceString": "0",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 0,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5792,
+      "fiat": {
+        "rate": 65628.5,
+        "amount": 130540.48,
+        "change": 659.74,
+        "changePercent": 0.51,
+        "customerCurrency": "EUR"
+      },
+      "name": "BTC",
+      "stub": false,
+      "color": "#FF8724",
+      "debit": true,
+      "scale": 8,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 1.98655697,
+          "min": 0.001
+        }
+      },
+      "address": "2NFnhQrRUbQT57YSx9oZRwWZrTXu8PVFQzq",
+      "balance": 1.98908205,
+      "pattern": "^(bitcoin:|btc:)?([123][a-km-zA-HJ-NP-Z1-9]{25,34}$)|(bc1[\\w]{25,}$)",
+      "currency": "BTC",
+      "customerId": 5787,
+      "balanceString": "1.98908205",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 1.98908205,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5794,
+      "fiat": {
+        "rate": 89.09,
+        "amount": 356.28,
+        "change": 17.48,
+        "changePercent": 4.91,
+        "customerCurrency": "EUR"
+      },
+      "name": "LTC",
+      "stub": false,
+      "color": "#9B9AA9",
+      "debit": true,
+      "scale": 8,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 3.993721,
+          "min": 0.01
+        }
+      },
+      "address": "QbRntihVRPxio1epdKaHpG2d1y8zKokkVm",
+      "balance": 3.999,
+      "pattern": "^(litecoin:)?([LM3Q2][a-km-zA-HJ-NP-Z1-9]{26,33})|(ltc1[\\w]{25,})$",
+      "currency": "LTC",
+      "customerId": 5787,
+      "balanceString": "3.999",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 3.999,
+      "walletCreationState": "READY"
+    }
+  ]
 }</code></pre>
 </div>
 </div>
@@ -364,115 +786,6 @@ The new email address to be added to the user&#8217;s account.</p>
   "error": "COMMON",
   "errorId": 0,
   "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
-  "systemId": "core"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>168 - The system checks the uniqueness of the email</code></strong></p>
-</div>
-<div class="paragraph">
-<p>Email uniqueness verification in the system involves checking whether an email address is already registered. After confirming the email, attempting to register the same email address will result in a message stating that such an address already exists.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>message</strong>: string</div>
-<p>Message that will be displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId</strong>: integer</div>
-<p>Integer identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId</strong>: string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error</strong>: string</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "error": "EMAIL_IS_ALREADY_REGISTERED",
-  "errorId": 168,
-  "message": "Email is already registered",
-  "systemId": "core"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>310 - The system detects that the email has already been confirmed</code></strong></p>
-</div>
-<div class="paragraph">
-<p>The system detects that the email has already been confirmed When attempting to confirm an email address, the system verifies whether the email has already been confirmed in the past. If the email has been previously confirmed, a message is returned instructing the user to contact support in order to change the email.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>message</strong>: string</div>
-<p>Message that will be displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId</strong>: integer</div>
-<p>Integer identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId</strong>: string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error</strong>: string</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "error": "EMAIL_ALREADY_CONFIRMED",
-  "errorId": 310,
-  "message": "Your email has been previously confirmed. Please contact support to change email",
-  "systemId": "core"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>422 - The system validates the email format</code></strong></p>
-</div>
-<div class="paragraph">
-<p>The system detects that the email has already been confirmed When attempting to confirm an email address, the system verifies whether the email has already been confirmed in the past. If the email has been previously confirmed, a message is returned instructing the user to contact support in order to change the email.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>message</strong>: string</div>
-<p>Message that will be displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId</strong>: integer</div>
-<p>Integer identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId</strong>: string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error</strong>: string</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "error": "NOT_VALID_REQUEST_DATA",
-  "field": "email",
-  "errorId": 422,
-  "message": "Please enter a valid email",
   "systemId": "core"
 }</code></pre>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inline Text Formatting :: Vault Docs</title>
+    <title>Feature Functionality Management :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -108,7 +108,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="ffm.html">Feature Functionality Management</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -142,7 +142,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Help</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-formatting.html">Inline Text Formatting</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,129 +190,221 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li>Help</li>
-    <li><a href="inline-text-formatting.html">Inline Text Formatting</a></li>
+    <li><a href="ffm.html">Feature Functionality Management</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/inline-text-formatting.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/ffm.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Inline Text Formatting</h1>
+<h1 class="page"><strong>Feature Functionality Management</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="custom-class" style="text-align: left;">
+    <div style="display: inline-block; background-color: lightgray; border-radius: 9px; padding: 2px;">
+        <code style="color: green; font-weight: bold;">
+            GET
+        </code>
+    </div>
+     <span style="font-weight: 900;">/v2/catalog/operations</span>
+</div>
 <div class="paragraph">
-<p>You can add the following inline styles to your content:</p>
+<p>The endpoint is designed to retrieve a simplified list of operations from the catalog. The catalog of operations may include various actions available for execution within the system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
+<div class="sectionbody">
+<div class="exampleblock collapsible">
+<div class="content">
+<div class="paragraph">
+<p><strong><code>200 - OK</code></strong></p>
+</div>
+<div class="paragraph">
+<p>The response status code indicates that the request was successfully processed.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>name</strong>: string</div>
+<p>The name of the operation. All available operations in the Vault can be viewed here.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>constraint</strong>: string</div>
+<p>Constraints or requirements associated with performing the operation.</p>
+</div>
+<div class="paragraph">
+<p>Possible values are:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Bold</p>
+<p><strong>NONE</strong>: Indicates that there are no specific constraints or requirements associated with the operation. The operation is allowed without any additional conditions.</p>
 </li>
 <li>
-<p>Italic</p>
+<p><strong>DISABLED</strong>: Indicates that the operation is currently disabled or not allowed. Users attempting this operation may be restricted.</p>
 </li>
 <li>
-<p>Monospace</p>
-</li>
-<li>
-<p>Highlight</p>
+<p><strong>MAINTENANCE</strong>: Indicates that the operation is under maintenance, and it may not be available for execution during this period. Users are advised to wait until maintenance is complete.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bold_and_italic"><a class="anchor" href="#_bold_and_italic"></a>Bold and italic</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>You can bold and italic entire phrases, a word, and characters in a word.</p>
+<div class="title"><strong>kycLevelPermissibleList</strong>: array of strings</div>
+<p>KYC levels for which this operation is permissible.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>supportedVersion</strong>: string</div>
+<p>The version of the supported operation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Soft Update</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Description:</strong> This type of update is only related to functional features and is not mandatory for all users.</p>
+</li>
+<li>
+<p><strong>When the check occurs:</strong> The check occurs when accessing a specific function.</p>
+</li>
+<li>
+<p><strong>How the check is performed:</strong> If the version of the feature on the client is less than the required one, using this feature becomes impossible.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Actions upon check:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the feature is isolated, a modal window appears with a proposal to update the application.</p>
+</li>
+<li>
+<p>If the feature is not isolated (for example, screens with tabs for features), instead of the feature&#8217;s starting screen, a screen appears with a message about the need to update.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
 </div>
 <div class="listingblock">
-<div class="title">Bold and italic inline formatting</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">*bold phrase* &amp; **char**acter**s**
-
-_italic phrase_ &amp; __char__acter__s__
-
-*_bold italic phrase_* &amp; **__char__**acter**__s__**</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> {
+  "name": "PAYOUT_CRYPTO",
+  "constraint": "NONE",
+  "kycLevelPermissibleList": [
+    "KYC_0"
+  ],
+  "currencyLimit": [
+    "BCH",
+    "OMG",
+    "DAI",
+    "CRPT",
+    "DAO",
+    "BTC",
+    "MKR",
+    "MAPS",
+    "BAT",
+    "ETH",
+    "LTC",
+    "USDC",
+    "BUSD",
+    "REP",
+    "EVER",
+    "QASH",
+    "MATIC",
+    "QLINDO",
+    "CHO",
+    "USDT",
+    "DASH",
+    "UNI",
+    "GLEEC",
+    "XRP",
+    "LINK",
+    "ZRX"
+  ],
+  "urlPatterns": [
+    "/v1/wallet/send",
+    "/v1/wallet/send/fee/*"
+  ],
+  "previewUrlPatterns": [
+    "/v1/wallet/send/fee/\\b[a-zA-Z]+\\b"
+  ],
+  "supportedVersion": "1.0"
+}</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Result</div>
+</div>
+</div>
+<div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong>bold phrase</strong> &amp; <strong>char</strong>acter<strong>s</strong></p>
+<p><strong><code>400 - Bad Request</code></strong></p>
 </div>
 <div class="paragraph">
-<p><em>italic phrase</em> &amp; <em>char</em>acter<em>s</em></p>
+<p>The response status code indicates that the requested page was not found on the server.</p>
 </div>
 <div class="paragraph">
-<p><strong><em>bold italic phrase</em></strong> &amp; <strong><em>char</em></strong>acter<strong><em>s</em></strong></p>
+<div class="title"><strong>message:</strong> string</div>
+<p>Message displayed to the user.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_monospace"><a class="anchor" href="#_monospace"></a>Monospace</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>You can monospace entire phrases, a word, and characters in a word.</p>
+<div class="title"><strong>field:</strong> string</div>
+<p>Specifies the field in the request that caused the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId:</strong> integer</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId:</strong> string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>originalMessage:</strong> string</div>
+<p>The original error message.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorStackTrace:</strong> string</div>
+<p>The place where the error occurred in the code.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>data:</strong> object</div>
+<p>Additional data related to the error, strutured as key-value pairs.c</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>additionalProp1:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp2:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp3:</strong> object</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error:</strong> string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
 </div>
 <div class="listingblock">
-<div class="title">Monospace inline formatting</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">`monospace phrase` &amp; ``char``acter``s``
-
-`*monospace bold phrase*` &amp; ``**char**``acter``**s**``
-
-`_monospace italic phrase_` &amp; ``__char__``acter``__s__``
-
-`*_monospace bold italic phrase_*` &amp;
-``**__char__**``acter``**__s__**``</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "COMMON",
+  "errorId": 0,
+  "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
+  "systemId": "core"
+}</code></pre>
 </div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p><code>monospace phrase</code> &amp; <code>char</code>acter<code>s</code></p>
-</div>
-<div class="paragraph">
-<p><code><strong>monospace bold phrase</strong></code> &amp; <code><strong>char</strong></code>acter<code><strong>s</strong></code></p>
-</div>
-<div class="paragraph">
-<p><code><em>monospace italic phrase</em></code> &amp; <code><em>char</em></code>acter<code><em>s</em></code></p>
-</div>
-<div class="paragraph">
-<p><code><strong><em>monospace bold italic phrase</em></strong></code> &amp;
-<code><strong><em>char</em></strong></code>acter<code><strong><em>s</em></strong></code></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_highlight"><a class="anchor" href="#_highlight"></a>Highlight</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can highlight entire phrases, a word, and characters in a word.</p>
-</div>
-<div class="listingblock">
-<div class="title">Highlight inline formatting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Let's #highlight this phrase# and part of th##is##.</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p>Let&#8217;s <mark>highlight this phrase</mark> and part of th<mark>is</mark>.</p>
 </div>
 </div>
 </div>

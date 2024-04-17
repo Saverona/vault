@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Confirm Email :: Vault Docs</title>
+    <title>Get Wallets :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -73,7 +73,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="add-email.html">Add Email</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="confirm-email.html">Confirm Email</a>
   </li>
 </ul>
@@ -118,7 +118,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="create-wallets.html">Create Wallets</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="get-wallets.html">Get Wallets</a>
   </li>
 </ul>
@@ -190,67 +190,31 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="signup.html">Signup</a></li>
-    <li><a href="confirm-email.html">Confirm Email</a></li>
+    <li><a href="Wallet.html">Wallet</a></li>
+    <li><a href="get-wallets.html">Get Wallets</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/confirm-email.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/get-wallets.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Confirm Email</strong></h1>
+<h1 class="page"><strong>Get Wallets</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>GET</code> /v2/mobile/email/confirm</strong></p>
+<p><strong><code>GET</code> /v2/wallets</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">GET https://api.vault.sandbox.testessential.net/v2/wallets HTTP/1.1
+Host: api.vault.sandbox.testessential.net</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The endpoint is to confirm an email address.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>🚧 The data must be encoded in <strong>base64</strong> format using your frontend</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_request"><a class="anchor" href="#_request"></a><strong>Request</strong></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
-<div class="sect3">
-<h4 id="_query_parameters"><a class="anchor" href="#_query_parameters"></a><strong>Query Parameters</strong></h4>
-<div class="ulist">
-<div class="title">Media Type: application/json</div>
-<ul>
-<li>
-<p><strong>email</strong>: string (required)
-The email address to be confirmed.</p>
-</li>
-<li>
-<p><strong>event</strong>: string (required)
-The event related to the email confirmation.</p>
-</li>
-<li>
-<p><strong>token</strong>: string (required)
-The token associated with the email confirmation process. It is sent to the user via email as part of the confirmation process. EMAIL_ADD is encoded in Base64 format.</p>
-</li>
-</ul>
-</div>
-</div>
+<p>This endpoint provides detailed information about user wallets, including associated accounts and fiat funds. It is designed for retrieving user wallet information.</p>
 </div>
 </div>
 </div>
@@ -260,14 +224,193 @@ The token associated with the email confirmation process. It is sent to the user
 <div class="exampleblock collapsible">
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - Success response</code></strong></p>
+<p><strong><code>201 - Created</code></strong></p>
 </div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
 <div class="paragraph collapsible-content">
-<div class="title"><strong>result:</strong> string</div>
-<p>indicates the result of the email address confirmation operation.</p>
+<div class="title"><strong>wallets</strong></div>
+<p>array[object]
+list of created wallets with detailed information for each.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>id</strong>: integer
+wallet identifier in Vault.</p>
+</li>
+<li>
+<p><strong>name</strong>: string
+name of the currency being created.</p>
+</li>
+<li>
+<p><strong>externalId</strong>: string
+external identifier of the wallet in Vault.</p>
+</li>
+<li>
+<p><strong>address</strong>: string
+blockchain network address of a specific coin.</p>
+</li>
+<li>
+<p><strong>currency</strong>: string
+currency of the wallet.
+Example: BTC, ETH, LTC etc.</p>
+</li>
+<li>
+<p><strong>baseCurrency</strong>: string
+base currency of the wallet.</p>
+</li>
+<li>
+<p><strong>pattern</strong>: string
+wallet pattern.</p>
+</li>
+<li>
+<p><strong>balance</strong>: integer
+current balance of the wallet.</p>
+</li>
+<li>
+<p><strong>limits</strong>: object
+wallet limits.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>additionalProp1</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+<li>
+<p><strong>additionalProp2</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+<li>
+<p><strong>additionalProp3</strong>: object
+a limit on some operation is imposed on a specific wallet.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>balanceString</strong>: string
+string representation of the balance.</p>
+</li>
+<li>
+<p><strong>availableBalance</strong>: integer
+balance that is currently available to the user.</p>
+</li>
+<li>
+<p><strong>customerId</strong>: integer
+identifier of the customer associated with the wallet.</p>
+</li>
+<li>
+<p><strong>createdAt</strong>: string&lt;date-time&gt;
+date and time of wallet creation.
+Match pattern: YYYY-MM-DDThh:mm:ss&lt;TZDSuffix&gt;</p>
+</li>
+<li>
+<p><strong>isDebit</strong>: boolean
+flag indicating whether the wallet is a debit wallet.
+Default: true</p>
+</li>
+<li>
+<p><strong>allowOperations</strong>: array[string]
+specifies the allowed operations with the wallet.</p>
+</li>
+<li>
+<p><strong>color</strong>: string
+color code associated with the wallet.</p>
+</li>
+<li>
+<p><strong>fiat</strong>: object
+information about the wallet in fiat currency.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>customerCurrency</strong>: string
+customer&#8217;s currency.</p>
+</li>
+<li>
+<p><strong>amount</strong>: integer
+a variable that indicates a specific value in rubles.</p>
+</li>
+<li>
+<p><strong>change</strong>: integer
+a variable that displays changes as a percentage (what happened to the wallet during the day) in fiat currency.</p>
+</li>
+<li>
+<p><strong>changePercent</strong>: integer
+in percentage.</p>
+</li>
+<li>
+<p><strong>rate</strong>: integer
+cryptocurrency to customerCurrency conversion rate.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>scale</strong>: integer
+a variable that specifies where the comma appears in a number.</p>
+</li>
+<li>
+<p><strong>stub</strong>: boolean
+indication of a stub or real wallet.
+Default: true</p>
+</li>
+<li>
+<p><strong>walletCreationState</strong>: string
+the variable is intended to display the status of the wallet.
+Allowed values:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Ready</strong>: Status means that a real address has been received and the wallet is ready for use.</p>
+</li>
+<li>
+<p><strong>New</strong>: Status means that the wallet has just been created.</p>
+</li>
+<li>
+<p><strong>Getting</strong>: Status means that the wallet is in the process of receiving a real address.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>iconUrl</strong>: string
+link to wallet icon.</p>
+</li>
+<li>
+<p><strong>network</strong>: string
+wallet network.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title"><strong>fiat</strong>: object</div>
+<p>information about user fiat funds.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>customerCurrency</strong>: string
+id, which is stored in the database.</p>
+</li>
+<li>
+<p><strong>amount</strong>: integer
+a variable that indicates a specific value in customerCurrency.</p>
+</li>
+<li>
+<p><strong>change</strong>: integer
+a variable that displays changes as a percentage (what happened to the wallet during the day).</p>
+</li>
+<li>
+<p><strong>changePercent</strong>: integer
+change percentage in fiat currency.</p>
+</li>
+<li>
+<p><strong>rate</strong>: integer
+exchange rate.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
@@ -275,7 +418,166 @@ The token associated with the email confirmation process. It is sent to the user
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "result": "ok"
+  "wallets": [
+    {
+      "id": -1,
+      "fiat": {
+        "rate": 0.12068,
+        "amount": 0,
+        "change": 0,
+        "changePercent": -1.14,
+        "customerCurrency": "EUR"
+      },
+      "name": "TRX",
+      "stub": true,
+      "color": "#EB322A",
+      "debit": true,
+      "scale": 5,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 0,
+          "min": 0.00001
+        }
+      },
+      "address": "",
+      "balance": 0,
+      "currency": "TRX",
+      "customerId": 5787,
+      "balanceString": "0",
+      "allowOperations": [],
+      "availableBalance": 0,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5822,
+      "fiat": {
+        "rate": 0.63421,
+        "amount": 0,
+        "change": 0,
+        "changePercent": 10.87,
+        "customerCurrency": "EUR"
+      },
+      "name": "XRP",
+      "stub": false,
+      "color": "#262A3C",
+      "debit": true,
+      "scale": 6,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 0,
+          "min": 20
+        }
+      },
+      "address": "rnrve1cZDyLv225wv9Xre1nD5EWRjS4CW2?dt=27",
+      "balance": 0,
+      "pattern": "^r[0-9a-zA-Z]{24,34}(\\?dt=\\d+)?$",
+      "currency": "XRP",
+      "customerId": 5787,
+      "balanceString": "0",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 0,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5792,
+      "fiat": {
+        "rate": 65628.5,
+        "amount": 130540.48,
+        "change": 659.74,
+        "changePercent": 0.51,
+        "customerCurrency": "EUR"
+      },
+      "name": "BTC",
+      "stub": false,
+      "color": "#FF8724",
+      "debit": true,
+      "scale": 8,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 1.98655697,
+          "min": 0.001
+        }
+      },
+      "address": "2NFnhQrRUbQT57YSx9oZRwWZrTXu8PVFQzq",
+      "balance": 1.98908205,
+      "pattern": "^(bitcoin:|btc:)?([123][a-km-zA-HJ-NP-Z1-9]{25,34}$)|(bc1[\\w]{25,}$)",
+      "currency": "BTC",
+      "customerId": 5787,
+      "balanceString": "1.98908205",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 1.98908205,
+      "walletCreationState": "READY"
+    },
+    {
+      "id": 5794,
+      "fiat": {
+        "rate": 89.09,
+        "amount": 356.28,
+        "change": 17.48,
+        "changePercent": 4.91,
+        "customerCurrency": "EUR"
+      },
+      "name": "LTC",
+      "stub": false,
+      "color": "#9B9AA9",
+      "debit": true,
+      "scale": 8,
+      "limits": {
+        "PAYOUT_CRYPTO": {
+          "all": 3.993721,
+          "min": 0.01
+        }
+      },
+      "address": "QbRntihVRPxio1epdKaHpG2d1y8zKokkVm",
+      "balance": 3.999,
+      "pattern": "^(litecoin:)?([LM3Q2][a-km-zA-HJ-NP-Z1-9]{26,33})|(ltc1[\\w]{25,})$",
+      "currency": "LTC",
+      "customerId": 5787,
+      "balanceString": "3.999",
+      "allowOperations": [
+        "TRANSFER_MOBILE",
+        "PAYIN_CRYPTO",
+        "WALLETTO_CARD_PAYLOAD",
+        "WALLETTO_CARD",
+        "COMMON",
+        "WALLET_SCREEN",
+        "PAYOUT_CRYPTO",
+        "EXCHANGE",
+        "PAYIN_CARD",
+        "PAYOUT_CARD",
+        "WALLETTO_PAY_FOR_CARD",
+        "Common"
+      ],
+      "availableBalance": 3.999,
+      "walletCreationState": "READY"
+    }
+  ]
 }</code></pre>
 </div>
 </div>

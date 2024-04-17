@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inline Text Formatting :: Vault Docs</title>
+    <title>Send :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -123,7 +123,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="Send.html">Send</a>
 <ul class="nav-list">
@@ -142,7 +142,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Help</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-formatting.html">Inline Text Formatting</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,133 +190,38 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li>Help</li>
-    <li><a href="inline-text-formatting.html">Inline Text Formatting</a></li>
+    <li><a href="Send.html">Send</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/inline-text-formatting.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Send.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Inline Text Formatting</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Send</h1>
 <div class="paragraph">
-<p>You can add the following inline styles to your content:</p>
+<p>The <code>Send</code> section is intended for performing operations related to sending coins from one wallet to another.</p>
+</div>
+<div class="paragraph">
+<p>This section provides several endpoints that enable the following actions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Bold</p>
+<p><strong>Validating a request to send coins:</strong> This process is carried out using the <a href="https://api-vault.readme.io/reference/validate-send-coins">POST /v1/wallet/send/validate</a> endpoint. Before executing the transaction, a preliminary check of the send request can be performed to ensure that all data for sending coins is correctly specified. This allows verifying that the transaction can be successfully executed.</p>
 </li>
 <li>
-<p>Italic</p>
+<p><strong>Getting information about the transaction fee:</strong> This process is performed using the <a href="https://api-vault.readme.io/reference/get-fee">GET /v1/wallet/send/fee/{currency}</a> endpoint. When calling this endpoint, information about the currency for which the fee is required is provided. The response includes information about the fee amount, currency, and transaction type.</p>
 </li>
 <li>
-<p>Monospace</p>
-</li>
-<li>
-<p>Highlight</p>
+<p><strong>Sending coins to another wallet:</strong> This process is performed using the <a href="https://api-vault.readme.io/reference/send-coins">POST /v1/wallet/send</a> endpoint. When calling this endpoint, information about the recipient&#8217;s address, the amount to be transferred, the currency, and, if necessary, the transaction fee is provided. Upon successful submission of the request, the response includes transaction information, including the transaction ID and confirmation of the send.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bold_and_italic"><a class="anchor" href="#_bold_and_italic"></a>Bold and italic</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>You can bold and italic entire phrases, a word, and characters in a word.</p>
-</div>
-<div class="listingblock">
-<div class="title">Bold and italic inline formatting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">*bold phrase* &amp; **char**acter**s**
-
-_italic phrase_ &amp; __char__acter__s__
-
-*_bold italic phrase_* &amp; **__char__**acter**__s__**</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p><strong>bold phrase</strong> &amp; <strong>char</strong>acter<strong>s</strong></p>
-</div>
-<div class="paragraph">
-<p><em>italic phrase</em> &amp; <em>char</em>acter<em>s</em></p>
-</div>
-<div class="paragraph">
-<p><strong><em>bold italic phrase</em></strong> &amp; <strong><em>char</em></strong>acter<strong><em>s</em></strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_monospace"><a class="anchor" href="#_monospace"></a>Monospace</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can monospace entire phrases, a word, and characters in a word.</p>
-</div>
-<div class="listingblock">
-<div class="title">Monospace inline formatting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">`monospace phrase` &amp; ``char``acter``s``
-
-`*monospace bold phrase*` &amp; ``**char**``acter``**s**``
-
-`_monospace italic phrase_` &amp; ``__char__``acter``__s__``
-
-`*_monospace bold italic phrase_*` &amp;
-``**__char__**``acter``**__s__**``</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p><code>monospace phrase</code> &amp; <code>char</code>acter<code>s</code></p>
-</div>
-<div class="paragraph">
-<p><code><strong>monospace bold phrase</strong></code> &amp; <code><strong>char</strong></code>acter<code><strong>s</strong></code></p>
-</div>
-<div class="paragraph">
-<p><code><em>monospace italic phrase</em></code> &amp; <code><em>char</em></code>acter<code><em>s</em></code></p>
-</div>
-<div class="paragraph">
-<p><code><strong><em>monospace bold italic phrase</em></strong></code> &amp;
-<code><strong><em>char</em></strong></code>acter<code><strong><em>s</em></strong></code></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_highlight"><a class="anchor" href="#_highlight"></a>Highlight</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can highlight entire phrases, a word, and characters in a word.</p>
-</div>
-<div class="listingblock">
-<div class="title">Highlight inline formatting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Let's #highlight this phrase# and part of th##is##.</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p>Let&#8217;s <mark>highlight this phrase</mark> and part of th<mark>is</mark>.</p>
-</div>
-</div>
-</div>
-</div>
+<p>Indeed, the <code>Send</code> section provides a convenient way to transfer coins between wallets, as well as the ability to validate a request and obtain information about the transaction fee.</p>
 </div>
 </article>
   </div>

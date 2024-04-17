@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inline Text Formatting :: Vault Docs</title>
+    <title>Get Fee :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -130,7 +130,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="validate-send-coins.html">Validate Send Coins</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="get-fee.html">Get Fee</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -142,7 +142,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Help</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-formatting.html">Inline Text Formatting</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,129 +190,203 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li>Help</li>
-    <li><a href="inline-text-formatting.html">Inline Text Formatting</a></li>
+    <li><a href="Send.html">Send</a></li>
+    <li><a href="get-fee.html">Get Fee</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/inline-text-formatting.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/get-fee.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Inline Text Formatting</h1>
+<h1 class="page"><strong>Get Fee</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can add the following inline styles to your content:</p>
+<p><strong><code>GET</code> /v2/mobile/password/change</strong></p>
 </div>
+<div class="paragraph">
+<p>This endpoint is designed to retrieve information about the fee for sending coins.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>The API provides functionality for conducting transfers, allowing users to specify either the recipient&#8217;s <code>wallet address</code> or <code>phone number</code>.</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_request"><a class="anchor" href="#_request"></a>Request</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_body"><a class="anchor" href="#_body"></a>Body</h3>
+<div class="paragraph">
+<p>Media Type: application/json</p>
+</div>
+<div class="sect3">
+<h4 id="_path_parameters"><a class="anchor" href="#_path_parameters"></a>Path Parameters</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Bold</p>
-</li>
-<li>
-<p>Italic</p>
-</li>
-<li>
-<p>Monospace</p>
-</li>
-<li>
-<p>Highlight</p>
+<p><strong>currency</strong>: <code>string</code> <strong>(required)</strong>
+The currency for which the fee is being requested.
+Example: <code>USDT</code></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_query_parameters"><a class="anchor" href="#_query_parameters"></a>Query Parameters</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>amount</strong>: <code>number</code> <strong>(required)</strong>
+The amount to be sent.</p>
+</li>
+<li>
+<p><strong>address</strong>: <code>string</code>
+The wallet address to which the coins will be sent. Always required for send by wallet.</p>
+</li>
+<li>
+<p><strong>phone</strong>: <code>string</code>
+Recipient&#8217;s phone number. Needed only for send by phone.</p>
+</li>
+</ul>
 </div>
-<div class="sect1">
-<h2 id="_bold_and_italic"><a class="anchor" href="#_bold_and_italic"></a>Bold and italic</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can bold and italic entire phrases, a word, and characters in a word.</p>
 </div>
+<div class="sect3">
+<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a>Request Sample: cURL</h4>
 <div class="listingblock">
-<div class="title">Bold and italic inline formatting</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">*bold phrase* &amp; **char**acter**s**
-
-_italic phrase_ &amp; __char__acter__s__
-
-*_bold italic phrase_* &amp; **__char__**acter**__s__**</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl --request GET \
+  --url 'https://api.vault.sandbox.testessential.net/v1/wallet/send/fee/USDT?address=0x9A6034c84cd431409Ac1a35278c7Da36FfDa53E5&amp;amount=10&amp;customerId=74' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNTFhYTc3Mi0yNDk4LTQ0ZTEtODdmYi0zYzNhZDdlMTY1ODgiLCJleHAiOjE3MDk4ODY0MDMsImlhdCI6MTcwOTgwMDAwM30.P81xYvVSC8HhpY-5ycpGT6cgn2K8nXMRD2E2sESfQPY'</code></pre>
 </div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p><strong>bold phrase</strong> &amp; <strong>char</strong>acter<strong>s</strong></p>
-</div>
-<div class="paragraph">
-<p><em>italic phrase</em> &amp; <em>char</em>acter<em>s</em></p>
-</div>
-<div class="paragraph">
-<p><strong><em>bold italic phrase</em></strong> &amp; <strong><em>char</em></strong>acter<strong><em>s</em></strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_monospace"><a class="anchor" href="#_monospace"></a>Monospace</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can monospace entire phrases, a word, and characters in a word.</p>
-</div>
-<div class="listingblock">
-<div class="title">Monospace inline formatting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">`monospace phrase` &amp; ``char``acter``s``
-
-`*monospace bold phrase*` &amp; ``**char**``acter``**s**``
-
-`_monospace italic phrase_` &amp; ``__char__``acter``__s__``
-
-`*_monospace bold italic phrase_*` &amp;
-``**__char__**``acter``**__s__**``</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Result</div>
-<div class="content">
-<div class="paragraph">
-<p><code>monospace phrase</code> &amp; <code>char</code>acter<code>s</code></p>
-</div>
-<div class="paragraph">
-<p><code><strong>monospace bold phrase</strong></code> &amp; <code><strong>char</strong></code>acter<code><strong>s</strong></code></p>
-</div>
-<div class="paragraph">
-<p><code><em>monospace italic phrase</em></code> &amp; <code><em>char</em></code>acter<code><em>s</em></code></p>
-</div>
-<div class="paragraph">
-<p><code><strong><em>monospace bold italic phrase</em></strong></code> &amp;
-<code><strong><em>char</em></strong></code>acter<code><strong><em>s</em></strong></code></p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_highlight"><a class="anchor" href="#_highlight"></a>Highlight</h2>
+<h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
 <div class="sectionbody">
+<div class="exampleblock collapsible">
+<div class="content">
 <div class="paragraph">
-<p>You can highlight entire phrases, a word, and characters in a word.</p>
+<p><strong><code>200 - OK</code></strong></p>
+</div>
+<div class="paragraph">
+<p>The response status code indicates that the request was successfully processed.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>fee</strong>: <code>integer</code></div>
+<p>The value of the transaction fee.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>sourceCurrency</strong>: <code>string</code></div>
+<p>The currency in which the fee is specified.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>transactionType</strong>: <code>string</code></div>
+<p>The type of the transaction.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>transactionAvailability</strong>: <code>boolean</code></div>
+<p>A flag indicating the availability of the transaction.
+<strong>Default:</strong> <code>true</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
 </div>
 <div class="listingblock">
-<div class="title">Highlight inline formatting</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Let's #highlight this phrase# and part of th##is##.</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "fee": 26.733816,
+  "sourceCurrency": "USDT",
+  "transactionType": "EXTERNAL",
+  "transactionAvailability": false
+}</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Result</div>
+</div>
+</div>
+<div class="exampleblock collapsible collapsible">
 <div class="content">
 <div class="paragraph">
-<p>Let&#8217;s <mark>highlight this phrase</mark> and part of th<mark>is</mark>.</p>
+<p><strong><code>400 - Bad Request</code></strong></p>
+</div>
+<div class="paragraph">
+<p>The response status code indicates that the server cannot or will not process the request due to something perceived as a client error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>message:</strong> string</div>
+<p>Message displayed to the user.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>field:</strong> string</div>
+<p>Specifies the field in the request that caused the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId:</strong> integer</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId:</strong> string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>originalMessage:</strong> string</div>
+<p>The original error message.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorStackTrace:</strong> string</div>
+<p>The place where the error occurred in the code.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>data:</strong> object</div>
+<p>Additional data related to the error, structured as key-value pairs.c</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>additionalProp1:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp2:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp3:</strong> object</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error:</strong> string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "COMMON",
+  "errorId": 0,
+  "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
+  "systemId": "core"
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
