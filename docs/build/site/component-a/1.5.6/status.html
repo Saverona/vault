@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Confirm Password Reset :: Vault Docs</title>
+    <title>Status :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -100,7 +100,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="resend-password.html">Resend Password</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reset-confirm-code.html">Confirm Password Reset</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -232,195 +232,175 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Account%20Password%20Operations.html">Account Password Operations</a></li>
-    <li><a href="reset-confirm-code.html">Confirm Password Reset</a></li>
+    <li><a href="status.html"><strong>Status</strong></a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/reset-confirm-code.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/status.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Confirm Password Reset</strong></h1>
+<h1 class="page"><strong>Status</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> /password/reset/confirm/code</strong></p>
+<p><strong><code>GET</code> /v2/customer/kyc/data</strong></p>
 </div>
 <div class="paragraph">
-<p>The endpoint is used for checking the SMS code associated with the <a href="https://github.com/crypterium-com/api-vault/wiki/Password-Reset-Process">process of resetting a password</a> for a mobile device.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Before using this endpoint, it is recommended to first request a password reset using the endpoint <a href="/v2/mobile/password/reset">resend-password</a>. This endpoint provides the ability to reset a user&#8217;s password.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_request"><a class="anchor" href="#_request"></a>Request</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_headers"><a class="anchor" href="#_headers"></a>Headers</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>X-Merchant-ID</strong>: string (required)
-Identification of requests from users of a specific partner.
-<strong>Default:</strong> <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
-</li>
-<li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-<strong>Default:</strong> <code>1.2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_body"><a class="anchor" href="#_body"></a>Body</h3>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
-<div class="ulist">
-<div class="title">Media Type: application/json</div>
-<ul>
-<li>
-<p><strong>code</strong>: string
-The confirmation code sent to the client to verify the password reset request. In this case, the SMS code is always the same, and it is <code>1234</code>.</p>
-</li>
-<li>
-<p><strong>phone</strong>: string
-The phone number that needs to be provided during registration.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_example_body"><a class="anchor" href="#_example_body"></a>Example body</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "code": "1234",
-  "phone": "+447871234567"
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a>Request Sample: cURL</h4>
-<div class="paragraph">
-<p>At the time of sending the request, the curl command should be as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl --request POST \
-  --url https://crpt-backend-main-service.sandbox.testessential.net/v2/mobile/password/reset/confirm/code \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYTdiM2UzNi1jNTQ4LTQ2NjMtYWNiZi00YjAwOWMyYTExZjgiLCJleHAiOjE3MDk4MTkxNTAsImlhdCI6MTcwOTczMjc1MH0.3xszxc2SaOTZm6-r7h_zRXU6_aQhgdRxMGUUDq9rXxI' \
-  --header 'Content-Type: application/json' \
-  --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-  --header 'X-Version: 1.2' \
-  --data '{
-  "code": "1234",
-  "phone": "+447871234567"
-}'</code></pre>
-</div>
-</div>
-</div>
+<p>The endpoint is intended to retrieve Know Your Customer (KYC) data for a customer. KYC is the process of verifying a customer&#8217;s identity in accordance with established standards and regulations.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="exampleblock collapsible">
+<details class="200">
+<summary class="title"><strong><code>200 - OK</code></strong></summary>
 <div class="content">
 <div class="paragraph">
-<p><strong><code>200 - OK</code></strong></p>
+<p>A successful request to obtain customer data within the KYC (Know Your Customer) process.</p>
 </div>
-<div class="paragraph">
-<p>The response status code indicates that the request was successfully processed.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>result</strong>: string</div>
-<p>the success of the password reset confirmation.</p>
-</div>
+<h4>Body</h4>
+<ul>
+  <li><strong>kycLevel</strong>: string<br>
+    Indicates the current KYC level of the customer.<br>
+    <strong>Example</strong>: NONE (no KYC completed), KYC1, KYC2, KYC3
+  </li>
+  <li><strong>kyc1ClientData</strong>: object<br>
+    KYC Level 1 data for the customer.
+    <ul>
+      <li><strong>status</strong>: string<br>
+        Status of KYC Level 1.<br>
+        <strong>Allowed values</strong>:
+        <ul>
+          <li>APPROVED: This status indicates that the verification has been successfully completed, and all client data meets the established requirements.</li>
+          <li>UNDEFINED: This status indicates that the client's status is not defined or is unknown for some reason. It could be a temporary state when the information has not yet been received or is being processed.</li>
+          <li>UNDER_REVIEW: This status indicates that the data has been submitted for verification, but the process is not yet completed. This could be related to the need for additional verification or confirmation of data.</li>
+          <li>DENIED: This status indicates client rejection. It means that the client's data does not meet the requirements or has been rejected for some other reason.</li>
+        </ul>
+      </li>
+      <li><strong>reason</strong>: string<br>
+        Reason for rejection if the status is DENIED. This is an internal rejection code.
+      </li>
+      <li><strong>rejectFormattedMessage</strong>: string<br>
+        Message explaining the reason for rejection, intended for display on the frontend.
+      </li>
+    </ul>
+  </li>
+  <li><strong>kyc2ClientData</strong>: object<br>
+    KYC Level 2 data for the customer.
+    <ul>
+      <li>Same structure as <strong>kyc1ClientData</strong></li>
+    </ul>
+  </li>
+  <li><strong>kyc3ClientData</strong>: object<br>
+    KYC Level 3 data for the customer.
+    <ul>
+      <li>Same structure as <strong>kyc1ClientData</strong></li>
+    </ul>
+  </li>
+  <li><strong>daysToExpireKyc</strong>: integer<br>
+    Specifies the number of days until KYC1 expires. This is applicable only to KYC1.
+  </li>
+  <li><strong>remainingAmount</strong>: object<br>
+    Information about the remaining funds in the client's account.
+    <ul>
+      <li><strong>value</strong>: integer<br>
+        The value of the remaining amount.
+      </li>
+      <li><strong>currency</strong>: string<br>
+        The currency of the amount.
+      </li>
+    </ul>
+  </li>
+  <li><strong>blockedAmount</strong>: object<br>
+    Information about the funds blocked in the client's account.
+    <ul>
+      <li><strong>value</strong>: integer<br>
+        Value of the blocked amount.
+      </li>
+      <li><strong>currency</strong>: string<br>
+        Currency of the blocked amount.
+      </li>
+    </ul>
+  </li>
+</ul>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "result": "ok"
+  "kycLevel": "KYC_1",
+  "blockedAmount": {
+    "value": 0,
+    "currency": "EUR"
+  },
+  "kyc1ClientData": {
+    "reason": null,
+    "status": "APPROVED",
+    "rejectFormattedMessage": null
+  },
+  "kyc2ClientData": {
+    "reason": null,
+    "status": "UNDEFINED",
+    "rejectFormattedMessage": null
+  },
+  "kyc3ClientData": {
+    "reason": null,
+    "status": "UNDEFINED",
+    "rejectFormattedMessage": null
+  },
+  "daysToExpireKyc": 1207,
+  "remainingAmount": {
+    "value": 9599.18,
+    "currency": "EUR"
+  }
 }</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="exampleblock collapsible">
+</details>
+<details class="400">
+<summary class="title"><strong><code>400 - Bad Request</code></strong></summary>
 <div class="content">
-<div class="paragraph">
-<p><strong><code>400 - Bad Request</code></strong></p>
-</div>
 <div class="paragraph">
 <p>The response status code indicates that the requested page was not found on the server.</p>
 </div>
-<div class="paragraph">
-<div class="title"><strong>message:</strong> string</div>
-<p>Message displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>field:</strong> string</div>
-<p>Specifies the field in the request that caused the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId:</strong> integer</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId:</strong> string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>originalMessage:</strong> string</div>
-<p>The original error message.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorStackTrace:</strong> string</div>
-<p>The place where the error occurred in the code.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>data:</strong> object</div>
-<p>Additional data related to the error, strutured as key-value pairs.c</p>
-</div>
-<div class="ulist">
+<h4>Body</h4>
 <ul>
-<li>
-<p><strong>additionalProp1:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp2:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp3:</strong> object</p>
-</li>
+  <li><strong>message</strong>: string<br>
+    Message displayed to the user.
+  </li>
+  <li><strong>field</strong>: string<br>
+    Specifies the field in the request that caused the error.
+  </li>
+  <li><strong>errorId</strong>: integer<br>
+    Identifier of the error.
+  </li>
+  <li><strong>systemId</strong>: string<br>
+    Identifier of the component.
+  </li>
+  <li><strong>originalMessage</strong>: string<br>
+    The original error message.
+  </li>
+  <li><strong>errorStackTrace</strong>: string<br>
+    The place where the error occurred in the code.
+  </li>
+  <li><strong>data</strong>: object<br>
+    Additional data related to the error, structured as key-value pairs.
+    <ul>
+      <li><strong>additionalProp1</strong>: object</li>
+      <li><strong>additionalProp2</strong>: object</li>
+      <li><strong>additionalProp3</strong>: object</li>
+    </ul>
+  </li>
+  <li><strong>error</strong>: string<br>
+    Identifier of the error.
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error:</strong> string</div>
-<p>Identifier of the error.</p>
-</div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
@@ -435,7 +415,7 @@ The phone number that needs to be provided during registration.</p>
 </div>
 </div>
 </div>
-</div>
+</details>
 </div>
 </div>
 </article>

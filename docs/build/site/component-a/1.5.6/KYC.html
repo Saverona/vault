@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Confirm Password Reset :: Vault Docs</title>
+    <title>KYC :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -100,7 +100,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="resend-password.html">Resend Password</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reset-confirm-code.html">Confirm Password Reset</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -156,7 +156,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="KYC.html">KYC</a>
 <ul class="nav-list">
@@ -232,25 +232,21 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Account%20Password%20Operations.html">Account Password Operations</a></li>
-    <li><a href="reset-confirm-code.html">Confirm Password Reset</a></li>
+    <li><a href="KYC.html">KYC</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/reset-confirm-code.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/KYC.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Confirm Password Reset</strong></h1>
+<h1 class="page">KYC</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> /password/reset/confirm/code</strong></p>
-</div>
-<div class="paragraph">
-<p>The endpoint is used for checking the SMS code associated with the <a href="https://github.com/crypterium-com/api-vault/wiki/Password-Reset-Process">process of resetting a password</a> for a mobile device.</p>
+<p>The <code>KYC</code> (Know Your Customer) section comprises a set of endpoints designed for conducting customer identification procedures in accordance with established standards and regulations.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -260,7 +256,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Before using this endpoint, it is recommended to first request a password reset using the endpoint <a href="/v2/mobile/password/reset">resend-password</a>. This endpoint provides the ability to reset a user&#8217;s password.</p>
+<p><strong>Vault offers distinct features categorized based on different KYC levels</strong></p>
 </div>
 </td>
 </tr>
@@ -269,172 +265,117 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_request"><a class="anchor" href="#_request"></a>Request</h2>
+<h2 id="_payin_card"><a class="anchor" href="#_payin_card"></a>PAYIN_CARD</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_headers"><a class="anchor" href="#_headers"></a>Headers</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>X-Merchant-ID</strong>: string (required)
-Identification of requests from users of a specific partner.
-<strong>Default:</strong> <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
-</li>
-<li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-<strong>Default:</strong> <code>1.2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_body"><a class="anchor" href="#_body"></a>Body</h3>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
-<div class="ulist">
-<div class="title">Media Type: application/json</div>
-<ul>
-<li>
-<p><strong>code</strong>: string
-The confirmation code sent to the client to verify the password reset request. In this case, the SMS code is always the same, and it is <code>1234</code>.</p>
-</li>
-<li>
-<p><strong>phone</strong>: string
-The phone number that needs to be provided during registration.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_example_body"><a class="anchor" href="#_example_body"></a>Example body</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "code": "1234",
-  "phone": "+447871234567"
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a>Request Sample: cURL</h4>
 <div class="paragraph">
-<p>At the time of sending the request, the curl command should be as follows:</p>
+<p>For customers with <code>KYC_0</code> level, the <strong>PAYIN_CARD</strong> functionality enables processing payments via credit cards. This functionality includes the ability to obtain fiat exchange rates, data on available payment cards, add new cards, manage billing addresses, and create/update offers without charging the customer.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl --request POST \
-  --url https://crpt-backend-main-service.sandbox.testessential.net/v2/mobile/password/reset/confirm/code \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYTdiM2UzNi1jNTQ4LTQ2NjMtYWNiZi00YjAwOWMyYTExZjgiLCJleHAiOjE3MDk4MTkxNTAsImlhdCI6MTcwOTczMjc1MH0.3xszxc2SaOTZm6-r7h_zRXU6_aQhgdRxMGUUDq9rXxI' \
-  --header 'Content-Type: application/json' \
-  --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-  --header 'X-Version: 1.2' \
-  --data '{
-  "code": "1234",
-  "phone": "+447871234567"
-}'</code></pre>
+<div class="paragraph">
+<p>Allowed Endpoints:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get fiat rates: <a href="https://api-vault.readme.io/reference/get-fiat-rates">GET /v3/payin/fiat-rates</a></p>
+</li>
+<li>
+<p>Get available rates and cards data for pay in: <a href="https://api-vault.readme.io/reference/get-available-rates-and-cards-payin">GET /v3/payin/data</a></p>
+</li>
+<li>
+<p>Add new card: <a href="https://api-vault.readme.io/reference/add-card">POST /v3/payin/card</a></p>
+</li>
+<li>
+<p>Add card billing address: <a href="https://api-vault.readme.io/reference/add-card-billing-address">POST /v3/payin/card/{cardId}/billing-address</a></p>
+</li>
+<li>
+<p>Create an offer without charging customer: <a href="https://api-vault.readme.io/reference/create-offer-without-charging-customer">POST /v3/payin/offer</a></p>
+</li>
+<li>
+<p>Update existing offer without charging customer: <a href="https://api-vault.readme.io/reference/update-existing-offer-without">PUT /v3/payin/offer/{offerId}</a></p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>For customers with <code>KYC_1</code> level, additional functionalities are available:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Execute offer payment (do payment authorization) <a href="https://api-vault.readme.io/reference/execute-offer-payment">POST /v3/payin/pay/{offerId}</a></p>
+</li>
+<li>
+<p>Pay callback <a href="https://api-vault.readme.io/reference/pay-callback">GET /v3/payin/pay-callback</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
+<h2 id="_payin_crypto"><a class="anchor" href="#_payin_crypto"></a>PAYIN_CRYPTO</h2>
 <div class="sectionbody">
-<div class="exampleblock collapsible">
-<div class="content">
 <div class="paragraph">
-<p><strong><code>200 - OK</code></strong></p>
+<p>For customers with <code>KYC_0</code>, <strong>PAYIN_CRYPTO</strong> features are available, allowing them to make payments using cryptocurrencies. Specific endpoints are not mentioned, but users can seamlessly make cryptocurrency payments.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_payout_card"><a class="anchor" href="#_payout_card"></a>PAYOUT_CARD</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The response status code indicates that the request was successfully processed.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>result</strong>: string</div>
-<p>the success of the password reset confirmation.</p>
-</div>
-<div class="paragraph">
-<p><strong>Responses example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "result": "ok"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>400 - Bad Request</code></strong></p>
-</div>
-<div class="paragraph">
-<p>The response status code indicates that the requested page was not found on the server.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>message:</strong> string</div>
-<p>Message displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>field:</strong> string</div>
-<p>Specifies the field in the request that caused the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId:</strong> integer</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId:</strong> string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>originalMessage:</strong> string</div>
-<p>The original error message.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorStackTrace:</strong> string</div>
-<p>The place where the error occurred in the code.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>data:</strong> object</div>
-<p>Additional data related to the error, strutured as key-value pairs.c</p>
+<p>For customers with <code>KYC_0</code> level, the following <strong>PAYOUT_CARD</strong> functions are available:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>additionalProp1:</strong> object</p>
+<p>Get available rates and cards data for payout: <a href="https://api-vault.readme.io/reference/get-available-rates-and-cards-payout">GET /v4/payout/data</a></p>
 </li>
 <li>
-<p><strong>additionalProp2:</strong> object</p>
+<p>Add a new card: <a href="https://api-vault.readme.io/reference/add-card-payout">POST /v4/payout/card</a></p>
 </li>
 <li>
-<p><strong>additionalProp3:</strong> object</p>
+<p>Create a payout offer: <a href="https://api-vault.readme.io/reference/create-payout-offer">POST /v4/payout/offer</a></p>
+</li>
+<li>
+<p>Update a payout offer: <a href="https://api-vault.readme.io/reference/update-payout-offer">PUT /v4/payout/offer/{offerId}</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<div class="title"><strong>error:</strong> string</div>
-<p>Identifier of the error.</p>
+<p>For customers with <code>KYC_1</code> level, additional functionalities are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Execute a payout offer <a href="https://api-vault.readme.io/reference/execute-payout-offer">POST /v4/payout/pay/{offerId}</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exchange"><a class="anchor" href="#_exchange"></a>EXCHANGE</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For customers with <code>KYC_0</code>, they can participate in currency exchange using the EXCHANGE features. The provided endpoints offer various operations related to mobile and online currency exchange.</p>
 </div>
 <div class="paragraph">
-<p><strong>Responses example</strong></p>
+<p>Allowed Endpoints:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "error": "COMMON",
-  "errorId": 0,
-  "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
-  "systemId": "core"
-}</code></pre>
-</div>
-</div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create an offer: <a href="https://api-vault.readme.io/reference/create-offer-exchange">POST /v1/mobile/exchange/offer</a></p>
+</li>
+<li>
+<p>Update an offer: <a href="https://api-vault.readme.io/reference/update-offer-exchange">PUT /v1/mobile/exchange/offer</a></p>
+</li>
+<li>
+<p>Execute an offer: <a href="https://api-vault.readme.io/reference/execute-offer-exchange">PUT /v1/mobile/exchange/offer/{offerId}</a></p>
+</li>
+<li>
+<p>Get available currencies for crypto exchanges: <a href="https://api-vault.readme.io/reference/get-available-currencies-for-crypto-exchanges">GET /v2/exchange/currencies</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Confirm Password Reset :: Vault Docs</title>
+    <title>Update Customer Profile :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -100,7 +100,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="resend-password.html">Resend Password</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="reset-confirm-code.html">Confirm Password Reset</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -145,7 +145,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="get-current-customer.html">Get Current Customer Profile</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="update-customer-profile.html">Update Customer Profile</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -232,109 +232,104 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="Account%20Password%20Operations.html">Account Password Operations</a></li>
-    <li><a href="reset-confirm-code.html">Confirm Password Reset</a></li>
+    <li><a href="Profile.html">Profile</a></li>
+    <li><a href="update-customer-profile.html">Update Customer Profile</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/reset-confirm-code.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/update-customer-profile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Confirm Password Reset</strong></h1>
+<h1 class="page"><strong>Update Customer Profile</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>POST</code> /password/reset/confirm/code</strong></p>
+<p><strong><code>PATCH</code> /v2/customer/profile</strong></p>
 </div>
 <div class="paragraph">
-<p>The endpoint is used for checking the SMS code associated with the <a href="https://github.com/crypterium-com/api-vault/wiki/Password-Reset-Process">process of resetting a password</a> for a mobile device.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Before using this endpoint, it is recommended to first request a password reset using the endpoint <a href="/v2/mobile/password/reset">resend-password</a>. This endpoint provides the ability to reset a user&#8217;s password.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>The endpoint is designed to update a customer&#8217;s profile in the system.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_request"><a class="anchor" href="#_request"></a>Request</h2>
+<h2 id="_request"><a class="anchor" href="#_request"></a><strong>Request</strong></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_headers"><a class="anchor" href="#_headers"></a>Headers</h3>
-<div class="ulist">
+<h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
 <ul>
-<li>
-<p><strong>X-Merchant-ID</strong>: string (required)
-Identification of requests from users of a specific partner.
-<strong>Default:</strong> <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code></p>
-</li>
-<li>
-<p><strong>X-Version</strong>: string (required)
-Version fingerprint.
-<strong>Default:</strong> <code>1.2</code></p>
-</li>
+  <li><strong>firstName</strong>: string<br>
+    A string representing the customer's first name.
+  </li>
+  <li><strong>lastName</strong>: string<br>
+    A string representing the customer's last name.
+  </li>
+  <li><strong>primaryCurrency</strong>: string<br>
+    A string representing the customer's primary currency.
+  </li>
+  <li><strong>residenceCountry</strong>: string<br>
+    A string representing the customer's residence country.
+  </li>
+  <li><strong>residenceCity</strong>: string<br>
+    A string representing the customer's residence city.
+  </li>
+  <li><strong>residenceStreet</strong>: string<br>
+    A string representing the customer's residence street.
+  </li>
+  <li><strong>residenceZipCode</strong>: string<br>
+    A string representing the customer's residence zip code.
+  </li>
+  <li><strong>dateOfBirth</strong>: string<br>
+    A string representing the customer's date of birth.<br>
+    Match pattern: <code>2024-02-09T10:55:39.799Z</code>
+  </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_body"><a class="anchor" href="#_body"></a>Body</h3>
 <div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h4>
-<div class="ulist">
-<div class="title">Media Type: application/json</div>
-<ul>
-<li>
-<p><strong>code</strong>: string
-The confirmation code sent to the client to verify the password reset request. In this case, the SMS code is always the same, and it is <code>1234</code>.</p>
-</li>
-<li>
-<p><strong>phone</strong>: string
-The phone number that needs to be provided during registration.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_example_body"><a class="anchor" href="#_example_body"></a>Example body</h4>
+<h4 id="_example_body"><a class="anchor" href="#_example_body"></a><strong>Example body</strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "code": "1234",
-  "phone": "+447871234567"
+  "lastName": "Schmidt",
+  "firstName": "Anna",
+  "dateOfBirth": "1990-05-20T00:00:00.000Z",
+  "residenceCity": "Munich",
+  "primaryCurrency": "EUR",
+  "residenceStreet": "Examplestrasse",
+  "residenceCountry": "DEU",
+  "residenceZipCode": "12345"
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a>Request Sample: cURL</h4>
+<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a><strong>Request Sample: cURL</strong></h4>
 <div class="paragraph">
 <p>At the time of sending the request, the curl command should be as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl --request POST \
-  --url https://crpt-backend-main-service.sandbox.testessential.net/v2/mobile/password/reset/confirm/code \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYTdiM2UzNi1jNTQ4LTQ2NjMtYWNiZi00YjAwOWMyYTExZjgiLCJleHAiOjE3MDk4MTkxNTAsImlhdCI6MTcwOTczMjc1MH0.3xszxc2SaOTZm6-r7h_zRXU6_aQhgdRxMGUUDq9rXxI' \
-  --header 'Content-Type: application/json' \
-  --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
-  --header 'X-Version: 1.2' \
-  --data '{
-  "code": "1234",
-  "phone": "+447871234567"
-}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request PATCH \
+     --url https://api.vault.sandbox.testessential.net/v2/customer/profile \
+     --header 'accept: text/plain' \
+     --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTU0ZDc0My05ZDExLTQ5YTEtYTMyMy03YmRmOGQ4NDdjMjEiLCJleHAiOjE3MDk3MjQ1NjQsImlhdCI6MTcwOTYzODE2NH0.deZXGfjS7oVprz2XoZseeYa7l8ti8aAJaELBeDDtglI' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "firstName": "Anna",
+  "lastName": "Schmidt",
+  "primaryCurrency": "EUR",
+  "residenceCountry": "DEU",
+  "residenceCity": "Munich",
+  "residenceStreet": "Examplestrasse",
+  "residenceZipCode": "12345",
+  "dateOfBirth": "1990-05-20T00:00:00.000Z"
+}
+'</code></pre>
 </div>
 </div>
 </div>
@@ -344,83 +339,61 @@ The phone number that needs to be provided during registration.</p>
 <div class="sect1">
 <h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="exampleblock collapsible">
+<details class="200">
+<summary class="title"><strong><code>200 - Success Response</code></strong></summary>
 <div class="content">
-<div class="paragraph">
-<p><strong><code>200 - OK</code></strong></p>
-</div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
-<div class="paragraph">
-<div class="title"><strong>result</strong>: string</div>
-<p>the success of the password reset confirmation.</p>
-</div>
-<div class="paragraph">
-<p><strong>Responses example</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "result": "ok"
-}</code></pre>
-</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <strong>No Content</strong> response indicates that the request was successfully processed
+</td>
+</tr>
+</table>
 </div>
 </div>
-</div>
-<div class="exampleblock collapsible">
-<div class="content">
-<div class="paragraph">
-<p><strong><code>400 - Bad Request</code></strong></p>
-</div>
+</details>
 <div class="paragraph">
 <p>The response status code indicates that the requested page was not found on the server.</p>
 </div>
-<div class="paragraph">
-<div class="title"><strong>message:</strong> string</div>
-<p>Message displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>field:</strong> string</div>
-<p>Specifies the field in the request that caused the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId:</strong> integer</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId:</strong> string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>originalMessage:</strong> string</div>
-<p>The original error message.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorStackTrace:</strong> string</div>
-<p>The place where the error occurred in the code.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>data:</strong> object</div>
-<p>Additional data related to the error, strutured as key-value pairs.c</p>
-</div>
-<div class="ulist">
+<h4>Body</h4>
 <ul>
-<li>
-<p><strong>additionalProp1:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp2:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp3:</strong> object</p>
-</li>
+  <li><strong>message</strong>: string<br>
+    Message displayed to the user.
+  </li>
+  <li><strong>field</strong>: string<br>
+    Specifies the field in the request that caused the error.
+  </li>
+  <li><strong>errorId</strong>: integer<br>
+    Identifier of the error.
+  </li>
+  <li><strong>systemId</strong>: string<br>
+    Identifier of the component.
+  </li>
+  <li><strong>originalMessage</strong>: string<br>
+    The original error message.
+  </li>
+  <li><strong>errorStackTrace</strong>: string<br>
+    The place where the error occurred in the code.
+  </li>
+  <li><strong>data</strong>: object<br>
+    Additional data related to the error, structured as key-value pairs.
+    <ul>
+      <li><strong>additionalProp1</strong>: object</li>
+      <li><strong>additionalProp2</strong>: object</li>
+      <li><strong>additionalProp3</strong>: object</li>
+    </ul>
+  </li>
+  <li><strong>error</strong>: string<br>
+    Identifier of the error.
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error:</strong> string</div>
-<p>Identifier of the error.</p>
-</div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
@@ -434,6 +407,9 @@ The phone number that needs to be provided during registration.</p>
 }</code></pre>
 </div>
 </div>
+<div class="exampleblock">
+<div class="content">
+
 </div>
 </div>
 </div>

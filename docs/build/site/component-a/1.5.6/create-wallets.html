@@ -140,6 +140,48 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Profile.html">Profile</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="get-current-customer.html">Get Current Customer Profile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="update-customer-profile.html">Update Customer Profile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="update-status.html">Update Status of Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resend-email.html">Resend Email</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="KYC.html">KYC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">KYC 1</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="start.html">Start</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="finish.html">Finish</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="KYC%202.html">KYC 2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="КУС%203.html">KYC 3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Help</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -213,89 +255,37 @@
 <div class="paragraph">
 <p>In the test environment, wallet creation is only available for the following cryptocurrencies:</p>
 </div>
-<div class="paragraph">
-<p>&lt;details&gt;
-&lt;summary&gt;Cryptocurrencies&lt;/summary&gt;</p>
-</div>
-<div class="ulist">
+<details>
+<summary>Cryptocurrencies</summary>
+
 <ul>
-<li>
-<p><strong>BAT</strong></p>
-</li>
-<li>
-<p><strong>BTC</strong></p>
-</li>
-<li>
-<p><strong>CHO</strong></p>
-</li>
-<li>
-<p><strong>CRPT</strong></p>
-</li>
-<li>
-<p><strong>DAI</strong></p>
-</li>
-<li>
-<p><strong>DAO</strong></p>
-</li>
-<li>
-<p><strong>ETH</strong></p>
-</li>
-<li>
-<p><strong>GALA</strong></p>
-</li>
-<li>
-<p><strong>LINK</strong></p>
-</li>
-<li>
-<p><strong>LTC</strong></p>
-</li>
-<li>
-<p><strong>MANA</strong></p>
-</li>
-<li>
-<p><strong>MAPS</strong></p>
-</li>
-<li>
-<p><strong>MATIC</strong></p>
-</li>
-<li>
-<p><strong>MKR</strong></p>
-</li>
-<li>
-<p><strong>OMG</strong></p>
-</li>
-<li>
-<p><strong>QASH</strong></p>
-</li>
-<li>
-<p><strong>REP</strong></p>
-</li>
-<li>
-<p><strong>SAND</strong></p>
-</li>
-<li>
-<p><strong>SHIB</strong></p>
-</li>
-<li>
-<p><strong>UNI</strong></p>
-</li>
-<li>
-<p><strong>USDC</strong></p>
-</li>
-<li>
-<p><strong>USDT</strong></p>
-</li>
-<li>
-<p><strong>XRP</strong></p>
-</li>
-<li>
-<p><strong>ZRX</strong></p>
-</li>
+  <li><strong>BAT</strong></li>
+  <li><strong>BTC</strong></li>
+  <li><strong>CHO</strong></li>
+  <li><strong>CRPT</strong></li>
+  <li><strong>DAI</strong></li>
+  <li><strong>DAO</strong></li>
+  <li><strong>ETH</strong></li>
+  <li><strong>GALA</strong></li>
+  <li><strong>LINK</strong></li>
+  <li><strong>LTC</strong></li>
+  <li><strong>MANA</strong></li>
+  <li><strong>MAPS</strong></li>
+  <li><strong>MATIC</strong></li>
+  <li><strong>MKR</strong></li>
+  <li><strong>OMG</strong></li>
+  <li><strong>QASH</strong></li>
+  <li><strong>REP</strong></li>
+  <li><strong>SAND</strong></li>
+  <li><strong>SHIB</strong></li>
+  <li><strong>UNI</strong></li>
+  <li><strong>USDC</strong></li>
+  <li><strong>USDT</strong></li>
+  <li><strong>XRP</strong></li>
+  <li><strong>ZRX</strong></li>
 </ul>
-</div>
-<div class="paragraph">
-<p>&lt;/details&gt;</p>
-</div>
+
+</details>
 <div class="paragraph">
 <p>Wallet creation for other cryptocurrencies is not available in the test environment.</p>
 </div>
@@ -308,15 +298,10 @@
 <h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
 <div class="sect3">
 <h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
-<div class="ulist">
-<div class="title">Media Type: <strong>application/json</strong></div>
 <ul>
-<li>
-<p><strong>currencies</strong>: array of strings <strong>(Required)</strong>
-Currencies for which the wallet needs to be created.</p>
-</li>
+  <li><strong>currencies</strong>: array of strings <span style="color:red">(Required)</span></li>
 </ul>
-</div>
+<p>Currencies for which the wallet needs to be created.</p>
 </div>
 <div class="sect3">
 <h4 id="_example_body"><a class="anchor" href="#_example_body"></a><strong>Example body</strong></h4>
@@ -362,197 +347,163 @@ Currencies for which the wallet needs to be created.</p>
 <div class="sect1">
 <h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
 <div class="sectionbody">
-<div class="exampleblock collapsible">
+<details class="201">
+<summary class="title"><strong><code>201 - Created</code></strong></summary>
 <div class="content">
-<div class="paragraph">
-<p><strong><code>201 - Created</code></strong></p>
-</div>
 <div class="paragraph">
 <p>The response status code indicates that the request was successfully processed.</p>
 </div>
-<div class="paragraph collapsible-content">
-<div class="title"><strong>wallets</strong></div>
-<p>array[object]
-list of created wallets with detailed information for each.</p>
-</div>
-<div class="ulist">
+<h4>wallets</h4>
 <ul>
-<li>
-<p><strong>id</strong>: integer
-wallet identifier in Vault.</p>
-</li>
-<li>
-<p><strong>name</strong>: string
-name of the currency being created.</p>
-</li>
-<li>
-<p><strong>externalId</strong>: string
-external identifier of the wallet in Vault.</p>
-</li>
-<li>
-<p><strong>address</strong>: string
-blockchain network address of a specific coin.</p>
-</li>
-<li>
-<p><strong>currency</strong>: string
-currency of the wallet.
-Example: BTC, ETH, LTC etc.</p>
-</li>
-<li>
-<p><strong>baseCurrency</strong>: string
-base currency of the wallet.</p>
-</li>
-<li>
-<p><strong>pattern</strong>: string
-wallet pattern.</p>
-</li>
-<li>
-<p><strong>balance</strong>: integer
-current balance of the wallet.</p>
-</li>
-<li>
-<p><strong>limits</strong>: object
-wallet limits.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>additionalProp1</strong>: object
-a limit on some operation is imposed on a specific wallet.</p>
-</li>
-<li>
-<p><strong>additionalProp2</strong>: object
-a limit on some operation is imposed on a specific wallet.</p>
-</li>
-<li>
-<p><strong>additionalProp3</strong>: object
-a limit on some operation is imposed on a specific wallet.</p>
-</li>
+  <li><strong>id</strong>: integer<br>
+    Wallet identifier in Vault.
+  </li>
+  <li><strong>name</strong>: string<br>
+    Name of the currency being created.
+  </li>
+  <li><strong>externalId</strong>: string<br>
+    External identifier of the wallet in Vault.
+  </li>
+  <li><strong>address</strong>: string<br>
+    Blockchain network address of a specific coin.
+  </li>
+  <li><strong>currency</strong>: string<br>
+    Currency of the wallet.
+    Example: BTC, ETH, LTC etc.
+  </li>
+  <li><strong>baseCurrency</strong>: string<br>
+    Base currency of the wallet.
+  </li>
+  <li><strong>pattern</strong>: string<br>
+    Wallet pattern.
+  </li>
+  <li><strong>balance</strong>: integer<br>
+    Current balance of the wallet.
+  </li>
+  <li><strong>limits</strong>: object<br>
+    Wallet limits.
+    <ul>
+      <li><strong>additionalProp1</strong>: object<br>
+        A limit on some operation is imposed on a specific wallet.
+        <ul>
+          <li><strong>min</strong>: integer<br>
+            Minimum limit.
+          </li>
+          <li><strong>all</strong>: integer<br>
+            Overall limit.
+          </li>
+        </ul>
+      </li>
+      <li><strong>additionalProp2</strong>: object<br>
+        A limit on some operation is imposed on a specific wallet.
+        <ul>
+          <li><strong>min</strong>: integer<br>
+            Minimum limit.
+          </li>
+          <li><strong>all</strong>: integer<br>
+            Overall limit.
+          </li>
+        </ul>
+      </li>
+      <li><strong>additionalProp3</strong>: object<br>
+        A limit on some operation is imposed on a specific wallet.
+        <ul>
+          <li><strong>min</strong>: integer<br>
+            Minimum limit.
+          </li>
+          <li><strong>all</strong>: integer<br>
+            Overall limit.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>balanceString</strong>: string<br>
+    String representation of the balance.
+  </li>
+  <li><strong>availableBalance</strong>: integer<br>
+    Balance that is currently available to the user.
+  </li>
+  <li><strong>customerId</strong>: integer<br>
+    Identifier of the customer associated with the wallet.
+  </li>
+  <li><strong>createdAt</strong>: string&lt;date-time&gt;<br>
+    Wallet creation date.
+    Match pattern: YYYY-MM-DDThh:mm:ss&lt;TZDSuffix&gt;
+  </li>
+  <li><strong>isDebit</strong>: boolean<br>
+    Flag indicating whether the wallet is a debit wallet.
+    Default: true
+  </li>
+  <li><strong>allowOperations</strong>: array[string]<br>
+    Specifies the allowed operations with the wallet.
+  </li>
+  <li><strong>color</strong>: string<br>
+    Color code associated with the wallet.
+  </li>
+  <li><strong>fiat</strong>: object<br>
+    Fiat wallet representation.
+    <ul>
+      <li><strong>customerCurrency</strong>: string<br>
+        ID, which is stored in the database.
+      </li>
+      <li><strong>amount</strong>: integer<br>
+        A variable that indicates a specific value in rubles.
+      </li>
+      <li><strong>change</strong>: integer<br>
+        A variable that displays changes as a percentage (what happened to the wallet during the day) in fiat currency.
+      </li>
+      <li><strong>changePercent</strong>: integer<br>
+        In percentage.
+      </li>
+      <li><strong>rate</strong>: integer<br>
+        Cryptocurrency to customerCurrency conversion rate.
+      </li>
+    </ul>
+  </li>
+  <li><strong>scale</strong>: integer<br>
+    A variable that specifies where the comma appears in a number.
+  </li>
+  <li><strong>stub</strong>: boolean<br>
+    Indication of a stub or real wallet.
+    Default: true
+  </li>
+  <li><strong>walletCreationState</strong>: string<br>
+    The variable is intended to display the status of the wallet.
+    Allowed values:
+    <ul>
+      <li><strong>Ready</strong>: Status means that a real address has been received and the wallet is ready for use.</li>
+      <li><strong>New</strong>: Status means that the wallet has just been created.</li>
+      <li><strong>Getting</strong>: Status means that the wallet is in the process of receiving a real address.</li>
+    </ul>
+  </li>
+  <li><strong>iconUrl</strong>: string<br>
+    Link to wallet icon.
+  </li>
+  <li><strong>network</strong>: string<br>
+    Token network.
+  </li>
+  <li><strong>fiat</strong>: object<br>
+    Information about user's fiat funds.
+    <ul>
+      <li><strong>customerCurrency</strong>: string<br>
+        ID, which is stored in the database.
+      </li>
+      <li><strong>amount</strong>: integer<br>
+        Amount of fiat funds in customerCurrency.
+      </li>
+      <li><strong>change</strong>: integer<br>
+        A variable that displays changes as a percentage (what happened to the wallet during the day).
+      </li>
+      <li><strong>changePercent</strong>: integer<br>
+        Change percentage in fiat currency.
+      </li>
+      <li><strong>rate</strong>: integer<br>
+        Exchange rate.
+      </li>
+    </ul>
+  </li>
 </ul>
-</div>
-</li>
-<li>
-<p><strong>balanceString</strong>: string
-string representation of the balance.</p>
-</li>
-<li>
-<p><strong>availableBalance</strong>: integer
-balance that is currently available to the user.</p>
-</li>
-<li>
-<p><strong>customerId</strong>: integer
-identifier of the customer associated with the wallet.</p>
-</li>
-<li>
-<p><strong>createdAt</strong>: string&lt;date-time&gt;
-date and time of wallet creation.
-Match pattern: YYYY-MM-DDThh:mm:ss&lt;TZDSuffix&gt;</p>
-</li>
-<li>
-<p><strong>isDebit</strong>: boolean
-flag indicating whether the wallet is a debit wallet.
-Default: true</p>
-</li>
-<li>
-<p><strong>allowOperations</strong>: array[string]
-specifies the allowed operations with the wallet.</p>
-</li>
-<li>
-<p><strong>color</strong>: string
-color code associated with the wallet.</p>
-</li>
-<li>
-<p><strong>fiat</strong>: object
-information about the wallet in fiat currency.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>customerCurrency</strong>: string
-customer&#8217;s currency.</p>
-</li>
-<li>
-<p><strong>amount</strong>: integer
-a variable that indicates a specific value in rubles.</p>
-</li>
-<li>
-<p><strong>change</strong>: integer
-a variable that displays changes as a percentage (what happened to the wallet during the day) in fiat currency.</p>
-</li>
-<li>
-<p><strong>changePercent</strong>: integer
-in percentage.</p>
-</li>
-<li>
-<p><strong>rate</strong>: integer
-cryptocurrency to customerCurrency conversion rate.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>scale</strong>: integer
-a variable that specifies where the comma appears in a number.</p>
-</li>
-<li>
-<p><strong>stub</strong>: boolean
-indication of a stub or real wallet.
-Default: true</p>
-</li>
-<li>
-<p><strong>walletCreationState</strong>: string
-the variable is intended to display the status of the wallet.
-Allowed values:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Ready</strong>: Status means that a real address has been received and the wallet is ready for use.</p>
-</li>
-<li>
-<p><strong>New</strong>: Status means that the wallet has just been created.</p>
-</li>
-<li>
-<p><strong>Getting</strong>: Status means that the wallet is in the process of receiving a real address.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>iconUrl</strong>: string
-link to wallet icon.</p>
-</li>
-<li>
-<p><strong>network</strong>: string
-wallet network.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title"><strong>fiat</strong>: object</div>
-<p>information about user fiat funds.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>customerCurrency</strong>: string
-id, which is stored in the database.</p>
-</li>
-<li>
-<p><strong>amount</strong>: integer
-a variable that indicates a specific value in customerCurrency.</p>
-</li>
-<li>
-<p><strong>change</strong>: integer
-a variable that displays changes as a percentage (what happened to the wallet during the day).</p>
-</li>
-<li>
-<p><strong>changePercent</strong>: integer
-change percentage in fiat currency.</p>
-</li>
-<li>
-<p><strong>rate</strong>: integer
-exchange rate.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
@@ -723,60 +674,45 @@ exchange rate.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="exampleblock collapsible">
+</details>
+<details class="400">
+<summary class="title"><strong><code>400 - Bad Request</code></strong></summary>
 <div class="content">
-<div class="paragraph">
-<p><strong><code>400 - Bad Request</code></strong></p>
-</div>
 <div class="paragraph">
 <p>The response status code indicates that the requested page was not found on the server.</p>
 </div>
-<div class="paragraph collapsible-content">
-<div class="title"><strong>message:</strong> string</div>
-<p>Message displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>field:</strong> string</div>
-<p>Specifies the field in the request that caused the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId:</strong> integer</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId:</strong> string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>originalMessage:</strong> string</div>
-<p>The original error message.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorStackTrace:</strong> string</div>
-<p>The place where the error occurred in the code.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>data:</strong> object</div>
-<p>Additional data related to the error, structured as key-value pairs.</p>
-</div>
-<div class="ulist">
+<h4>Body</h4>
 <ul>
-<li>
-<p><strong>additionalProp1:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp2:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp3:</strong> object</p>
-</li>
+  <li><strong>message</strong>: string<br>
+    Message displayed to the user.
+  </li>
+  <li><strong>field</strong>: string<br>
+    Specifies the field in the request that caused the error.
+  </li>
+  <li><strong>errorId</strong>: integer<br>
+    Identifier of the error.
+  </li>
+  <li><strong>systemId</strong>: string<br>
+    Identifier of the component.
+  </li>
+  <li><strong>originalMessage</strong>: string<br>
+    The original error message.
+  </li>
+  <li><strong>errorStackTrace</strong>: string<br>
+    The place where the error occurred in the code.
+  </li>
+  <li><strong>data</strong>: object<br>
+    Additional data related to the error, structured as key-value pairs.
+    <ul>
+      <li><strong>additionalProp1</strong>: object</li>
+      <li><strong>additionalProp2</strong>: object</li>
+      <li><strong>additionalProp3</strong>: object</li>
+    </ul>
+  </li>
+  <li><strong>error</strong>: string<br>
+    Identifier of the error.
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error:</strong> string</div>
-<p>Identifier of the error.</p>
-</div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
@@ -791,7 +727,7 @@ exchange rate.</p>
 </div>
 </div>
 </div>
-</div>
+</details>
 </div>
 </div>
 </article>

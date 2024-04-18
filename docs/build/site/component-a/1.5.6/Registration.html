@@ -140,6 +140,48 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="Profile.html">Profile</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="get-current-customer.html">Get Current Customer Profile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="update-customer-profile.html">Update Customer Profile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="update-status.html">Update Status of Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resend-email.html">Resend Email</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="KYC.html">KYC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">KYC 1</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="start.html">Start</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="finish.html">Finish</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="KYC%202.html">KYC 2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="КУС%203.html">KYC 3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Help</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -336,51 +378,38 @@ Optional parameter for transmitting analytics data.
 <div class="paragraph">
 <p>The response status code indicates that the requested page was not found on the server.</p>
 </div>
-<div class="paragraph collapsible-content">
-<div class="title"><strong>message:</strong> string</div>
-<p>Message displayed to the user.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>field:</strong> string</div>
-<p>Specifies the field in the request that caused the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorId:</strong> integer</div>
-<p>Identifier of the error.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>systemId:</strong> string</div>
-<p>Identifier of the component.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>originalMessage:</strong> string</div>
-<p>The original error message.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>errorStackTrace:</strong> string</div>
-<p>The place where the error occurred in the code.</p>
-</div>
-<div class="paragraph">
-<div class="title"><strong>data:</strong> object</div>
-<p>Additional data related to the error, structured as key-value pairs.</p>
-</div>
-<div class="ulist">
+<h4>Body</h4>
 <ul>
-<li>
-<p><strong>additionalProp1:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp2:</strong> object</p>
-</li>
-<li>
-<p><strong>additionalProp3:</strong> object</p>
-</li>
+  <li><strong>message</strong>: string<br>
+    Message displayed to the user.
+  </li>
+  <li><strong>field</strong>: string<br>
+    Specifies the field in the request that caused the error.
+  </li>
+  <li><strong>errorId</strong>: integer<br>
+    Identifier of the error.
+  </li>
+  <li><strong>systemId</strong>: string<br>
+    Identifier of the component.
+  </li>
+  <li><strong>originalMessage</strong>: string<br>
+    The original error message.
+  </li>
+  <li><strong>errorStackTrace</strong>: string<br>
+    The place where the error occurred in the code.
+  </li>
+  <li><strong>data</strong>: object<br>
+    Additional data related to the error, structured as key-value pairs.
+    <ul>
+      <li><strong>additionalProp1</strong>: object</li>
+      <li><strong>additionalProp2</strong>: object</li>
+      <li><strong>additionalProp3</strong>: object</li>
+    </ul>
+  </li>
+  <li><strong>error</strong>: string<br>
+    Identifier of the error.
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<div class="title"><strong>error:</strong> string</div>
-<p>Identifier of the error.</p>
-</div>
 <div class="paragraph">
 <p><strong>Responses example</strong></p>
 </div>
