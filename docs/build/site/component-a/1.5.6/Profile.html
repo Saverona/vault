@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SignUp :: Vault Docs</title>
+    <title>Profile :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -57,7 +57,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="signup.html">Signup</a>
 <ul class="nav-list">
@@ -190,199 +190,19 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="signup.html">Signup</a></li>
+    <li><a href="Profile.html">Profile</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/signup.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/Profile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">SignUp</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Profile</h1>
 <div class="paragraph">
-<p>The <code>SignUp</code> section in the Vault company is designed to provide functionality related to the registration of new users in the system. It offers methods that enable clients to create new user accounts, verify them, and retrieve information associated with the <a href="https://github.com/crypterium-com/api-vault/wiki/Registration-Process">registration process</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_check_for_ip_and_phone_number_prefix_blocking"><a class="anchor" href="#_check_for_ip_and_phone_number_prefix_blocking"></a>Check for IP and phone number prefix blocking</h3>
-<div class="paragraph">
-<p>Upon registering a new user, a comprehensive check is carried out, including verification of the requesting IP address and the phone number prefix. This check occurs both on mobile devices (via the application), through the web interface, and via API.</p>
-</div>
-<div class="sect3">
-<h4 id="_ip_address_verification"><a class="anchor" href="#_ip_address_verification"></a>IP address verification</h4>
-<div class="paragraph">
-<p>Before registration or authentication, the requesting IP address is checked. There is a table of forbidden countries (Forbidden Country) where countries with restricted access are listed. If the IP address belongs to a country listed in this table, the user will be unable to authenticate or register. Users whose IP addresses belong to a forbidden country will receive an appropriate error message.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_phone_number_prefix_verification"><a class="anchor" href="#_phone_number_prefix_verification"></a>Phone number prefix verification</h4>
-<div class="paragraph">
-<p>Phone numbers are also subject to verification to ensure compliance with allowed and forbidden countries (Forbidden Registration Country). If the phone number prefix corresponds to a country forbidden for registration, the user will receive a corresponding error message.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_backend_responses_in_case_of_errors"><a class="anchor" href="#_backend_responses_in_case_of_errors"></a>Backend responses in case of errors</h4>
-<div class="paragraph">
-<p>In case of violating one of the verification criteria (for example, a forbidden IP address or phone number prefix), the backend returns various error messages, including specific error codes for client-side processing convenience.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>COUNTRY_BLOCKED_FOR_REGISTRATION (blocked by IP)</code>: If the requesting IP address belongs to a country included in the list of forbidden countries for registration, an error "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION will be returned.</p>
-</li>
-<li>
-<p><code>PHONE_PREFIX_BLOCKED_FOR_REGISTRATION (blocked by phone number prefix)</code>: If the phone number prefix corresponds to a country forbidden for registration, an error "Registration is prohibited in your country" with error code PHONE_PREFIX_BLOCKED_FOR_REGISTRATION will be returned.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_breakdown_of_error_scenarios_based_on_ip_and_phone_number_prefix_considering_the_forbidden_countries"><a class="anchor" href="#_breakdown_of_error_scenarios_based_on_ip_and_phone_number_prefix_considering_the_forbidden_countries"></a>Breakdown of error scenarios based on IP and phone number prefix considering the forbidden countries</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From an allowed IP with an allowed phone number prefix: Response code 200.</p>
-</li>
-<li>
-<p>From an allowed IP with a forbidden phone number prefix: Error message "Registration is prohibited in your country" with error code PHONE_PREFIX_BLOCKED_FOR_REGISTRATION.</p>
-</li>
-<li>
-<p>From a forbidden IP with a forbidden phone number prefix: Error message "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION (since the IP check takes precedence).</p>
-</li>
-<li>
-<p>From a forbidden IP with an allowed phone number prefix: Error message "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_forbidden_countries_for_registration"><a class="anchor" href="#_forbidden_countries_for_registration"></a>Forbidden countries for registration</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Abkhazia</p>
-</li>
-<li>
-<p>Afghanistan</p>
-</li>
-<li>
-<p>Albania</p>
-</li>
-<li>
-<p>Barbados</p>
-</li>
-<li>
-<p>Botswana</p>
-</li>
-<li>
-<p>Cambodia</p>
-</li>
-<li>
-<p>Crimea</p>
-</li>
-<li>
-<p>Cuba</p>
-</li>
-<li>
-<p>Donetsk National Republic (DNR)</p>
-</li>
-<li>
-<p>Gaza Strip</p>
-</li>
-<li>
-<p>Haiti</p>
-</li>
-<li>
-<p>Iran</p>
-</li>
-<li>
-<p>Iraq</p>
-</li>
-<li>
-<p>Jamaica</p>
-</li>
-<li>
-<p>Kashmir</p>
-</li>
-<li>
-<p>Libya</p>
-</li>
-<li>
-<p>Luhansk National Republic (LNR)</p>
-</li>
-<li>
-<p>Mongolia</p>
-</li>
-<li>
-<p>Myanmar</p>
-</li>
-<li>
-<p>Nagorno Karabakh</p>
-</li>
-<li>
-<p>Netherlands (the)</p>
-</li>
-<li>
-<p>Nicaragua</p>
-</li>
-<li>
-<p>North Korea (Democratic People&#8217;s Republic of Korea)</p>
-</li>
-<li>
-<p>Pakistan</p>
-</li>
-<li>
-<p>Palestine</p>
-</li>
-<li>
-<p>Senegal</p>
-</li>
-<li>
-<p>Russia</p>
-</li>
-<li>
-<p>Somalia</p>
-</li>
-<li>
-<p>South Ossetia</p>
-</li>
-<li>
-<p>South Sudan</p>
-</li>
-<li>
-<p>Syria</p>
-</li>
-<li>
-<p>Trinidad and Tobago</p>
-</li>
-<li>
-<p>Uganda</p>
-</li>
-<li>
-<p>Vanuatu</p>
-</li>
-<li>
-<p>West Bank</p>
-</li>
-<li>
-<p>Yemen</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_registration_process"><a class="anchor" href="#_registration_process"></a>Registration process</h3>
-<div class="imageblock">
-<div class="content">
-<img src="https://files.readme.io/437b2d8-image.png" alt="437b2d8 image">
-</div>
-</div>
+<p>The <code>Profile</code> section is designed for managing customer profiles within the system. Each method in this section performs a specific operation related to the customer profile, including retrieving information, changing passwords. These operations provide clients with convenient and secure means to control their accounts and ensure compliance with regulatory requirements.</p>
 </div>
 </article>
   </div>

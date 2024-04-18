@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SignUp :: Vault Docs</title>
+    <title>Registration of a new user :: Vault Docs</title>
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -57,7 +57,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="signup.html">Signup</a>
 <ul class="nav-list">
@@ -190,198 +190,225 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="Introduction.html">Component A</a></li>
-    <li><a href="signup.html">Signup</a></li>
+    <li><a href="get-current-customer.html"><strong>Registration of a new user</strong></a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/signup.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/Saverona/test_a/edit/main/modules/ROOT/pages/get-current-customer.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">SignUp</h1>
+<h1 class="page"><strong>Registration of a new user</strong></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>SignUp</code> section in the Vault company is designed to provide functionality related to the registration of new users in the system. It offers methods that enable clients to create new user accounts, verify them, and retrieve information associated with the <a href="https://github.com/crypterium-com/api-vault/wiki/Registration-Process">registration process</a>.</p>
+<p><strong><code>POST</code> v2/mobile/signup</strong></p>
+</div>
+<div class="paragraph">
+<p>This endpoint is designed for registering a new user in a mobile application or service using a phone number as the primary identifier.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>When re-registering in the system, it is necessary to use a new phone number that has not been used before.</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>User registration involves providing necessary information such as the phone number and chosen password.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_request"><a class="anchor" href="#_request"></a><strong>Request</strong></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_headers"><a class="anchor" href="#_headers"></a><strong>Headers</strong></h3>
+<br><ul>
+  <li><strong>X-Merchant-ID:</strong> string (required)<br>
+    Identification of requests from users of a specific partner.<br>
+    Default: <code>bece038f-2e46-49f4-b25e-89cd38d6dc16</code>
+  </li><br>
+  <li><strong>X-Version:</strong> string (required)<br>
+    Version fingerprint.<br>
+    Default: <code><span class="mono">1.2</span></code>
+  </li><br>
+  <li><strong>X-Fingerprint:</strong> string<br>
+    Device fingerprint. Fingerprint for WEB for Android and iOS can be viewed <a href="https://github.com/crypterium-com/api-vault.wiki.git">here</a>.
+  </li><br>
+  <li><strong>X-Signature:</strong> string<br>
+    Contains a digital signature generated both on the server-side (backend) and the client-side (frontend). Used for verifying the authenticity of requests.
+  </li>
+</ul>
 </div>
 <div class="sect2">
-<h3 id="_check_for_ip_and_phone_number_prefix_blocking"><a class="anchor" href="#_check_for_ip_and_phone_number_prefix_blocking"></a>Check for IP and phone number prefix blocking</h3>
-<div class="paragraph">
-<p>Upon registering a new user, a comprehensive check is carried out, including verification of the requesting IP address and the phone number prefix. This check occurs both on mobile devices (via the application), through the web interface, and via API.</p>
-</div>
+<h3 id="_body"><a class="anchor" href="#_body"></a><strong>Body</strong></h3>
 <div class="sect3">
-<h4 id="_ip_address_verification"><a class="anchor" href="#_ip_address_verification"></a>IP address verification</h4>
-<div class="paragraph">
-<p>Before registration or authentication, the requesting IP address is checked. There is a table of forbidden countries (Forbidden Country) where countries with restricted access are listed. If the IP address belongs to a country listed in this table, the user will be unable to authenticate or register. Users whose IP addresses belong to a forbidden country will receive an appropriate error message.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_phone_number_prefix_verification"><a class="anchor" href="#_phone_number_prefix_verification"></a>Phone number prefix verification</h4>
-<div class="paragraph">
-<p>Phone numbers are also subject to verification to ensure compliance with allowed and forbidden countries (Forbidden Registration Country). If the phone number prefix corresponds to a country forbidden for registration, the user will receive a corresponding error message.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_backend_responses_in_case_of_errors"><a class="anchor" href="#_backend_responses_in_case_of_errors"></a>Backend responses in case of errors</h4>
-<div class="paragraph">
-<p>In case of violating one of the verification criteria (for example, a forbidden IP address or phone number prefix), the backend returns various error messages, including specific error codes for client-side processing convenience.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>COUNTRY_BLOCKED_FOR_REGISTRATION (blocked by IP)</code>: If the requesting IP address belongs to a country included in the list of forbidden countries for registration, an error "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION will be returned.</p>
-</li>
-<li>
-<p><code>PHONE_PREFIX_BLOCKED_FOR_REGISTRATION (blocked by phone number prefix)</code>: If the phone number prefix corresponds to a country forbidden for registration, an error "Registration is prohibited in your country" with error code PHONE_PREFIX_BLOCKED_FOR_REGISTRATION will be returned.</p>
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong>Parameters</strong></h4>
+<br><ul>
+<li><strong>phone:</strong> string (Required)<br>
+The phone number needed for registration.
+</li><br>
+<li><strong>password:</strong> string (Required)<br>
+The password required for registration. See password creation rule.
+</li><br>
+<li><strong>analyticsCallback:</strong> string<br>
+Optional parameter for transmitting analytics data.
 </li>
 </ul>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_breakdown_of_error_scenarios_based_on_ip_and_phone_number_prefix_considering_the_forbidden_countries"><a class="anchor" href="#_breakdown_of_error_scenarios_based_on_ip_and_phone_number_prefix_considering_the_forbidden_countries"></a>Breakdown of error scenarios based on IP and phone number prefix considering the forbidden countries</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From an allowed IP with an allowed phone number prefix: Response code 200.</p>
-</li>
-<li>
-<p>From an allowed IP with a forbidden phone number prefix: Error message "Registration is prohibited in your country" with error code PHONE_PREFIX_BLOCKED_FOR_REGISTRATION.</p>
-</li>
-<li>
-<p>From a forbidden IP with a forbidden phone number prefix: Error message "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION (since the IP check takes precedence).</p>
-</li>
-<li>
-<p>From a forbidden IP with an allowed phone number prefix: Error message "We&#8217;re sorry, but the application is not available in your region" with error code COUNTRY_BLOCKED_FOR_REGISTRATION.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_forbidden_countries_for_registration"><a class="anchor" href="#_forbidden_countries_for_registration"></a>Forbidden countries for registration</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Abkhazia</p>
-</li>
-<li>
-<p>Afghanistan</p>
-</li>
-<li>
-<p>Albania</p>
-</li>
-<li>
-<p>Barbados</p>
-</li>
-<li>
-<p>Botswana</p>
-</li>
-<li>
-<p>Cambodia</p>
-</li>
-<li>
-<p>Crimea</p>
-</li>
-<li>
-<p>Cuba</p>
-</li>
-<li>
-<p>Donetsk National Republic (DNR)</p>
-</li>
-<li>
-<p>Gaza Strip</p>
-</li>
-<li>
-<p>Haiti</p>
-</li>
-<li>
-<p>Iran</p>
-</li>
-<li>
-<p>Iraq</p>
-</li>
-<li>
-<p>Jamaica</p>
-</li>
-<li>
-<p>Kashmir</p>
-</li>
-<li>
-<p>Libya</p>
-</li>
-<li>
-<p>Luhansk National Republic (LNR)</p>
-</li>
-<li>
-<p>Mongolia</p>
-</li>
-<li>
-<p>Myanmar</p>
-</li>
-<li>
-<p>Nagorno Karabakh</p>
-</li>
-<li>
-<p>Netherlands (the)</p>
-</li>
-<li>
-<p>Nicaragua</p>
-</li>
-<li>
-<p>North Korea (Democratic People&#8217;s Republic of Korea)</p>
-</li>
-<li>
-<p>Pakistan</p>
-</li>
-<li>
-<p>Palestine</p>
-</li>
-<li>
-<p>Senegal</p>
-</li>
-<li>
-<p>Russia</p>
-</li>
-<li>
-<p>Somalia</p>
-</li>
-<li>
-<p>South Ossetia</p>
-</li>
-<li>
-<p>South Sudan</p>
-</li>
-<li>
-<p>Syria</p>
-</li>
-<li>
-<p>Trinidad and Tobago</p>
-</li>
-<li>
-<p>Uganda</p>
-</li>
-<li>
-<p>Vanuatu</p>
-</li>
-<li>
-<p>West Bank</p>
-</li>
-<li>
-<p>Yemen</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_registration_process"><a class="anchor" href="#_registration_process"></a>Registration process</h3>
-<div class="imageblock">
+<h4 id="_example_body"><a class="anchor" href="#_example_body"></a><strong>Example body</strong></h4>
+<div class="listingblock">
 <div class="content">
-<img src="https://files.readme.io/437b2d8-image.png" alt="437b2d8 image">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "phone": "+447871234567",
+  "password": "1234Qwerty",
+  "analyticsCallback": "string"
+}</code></pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_request_sample_curl"><a class="anchor" href="#_request_sample_curl"></a><strong>Request Sample: cURL</strong></h4>
+<div class="paragraph">
+<p>At the time of sending the request, the curl command should be as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-curl hljs" data-lang="curl">curl --request POST \
+     --url https://api.vault.sandbox.testessential.net/v2/mobile/signup \
+     --header 'X-Merchant-ID: bece038f-2e46-49f4-b25e-89cd38d6dc16' \
+     --header 'X-Version: 1.2' \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "phone": "+447871234567",
+  "password": "1234Qwerty",
+  "analyticsCallback": "string"
+}
+'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h2>
+<div class="sectionbody">
+<details class="200">
+<summary class="title"><strong><code>200 - Success Response</code></strong></summary>
+<div class="content">
+<div class="paragraph">
+<p>The response status code indicates that the request was successfully processed.</p>
+</div>
+<div class="paragraph collapsible-content">
+<div class="title"><strong>result</strong>: string</div>
+<p>Provides information about the outcome of the registration operation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+"result": "ok"
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+<details class="400">
+<summary class="title"><strong><code>400 - Bad Request</code></strong></summary>
+<div class="content">
+<div class="paragraph">
+<p>The response status code indicates that the requested page was not found on the server.</p>
+</div>
+<div class="paragraph collapsible-content">
+<div class="title"><strong>message:</strong> string</div>
+<p>Message displayed to the user.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>field:</strong> string</div>
+<p>Specifies the field in the request that caused the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorId:</strong> integer</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>systemId:</strong> string</div>
+<p>Identifier of the component.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>originalMessage:</strong> string</div>
+<p>The original error message.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>errorStackTrace:</strong> string</div>
+<p>The place where the error occurred in the code.</p>
+</div>
+<div class="paragraph">
+<div class="title"><strong>data:</strong> object</div>
+<p>Additional data related to the error, structured as key-value pairs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>additionalProp1:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp2:</strong> object</p>
+</li>
+<li>
+<p><strong>additionalProp3:</strong> object</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title"><strong>error:</strong> string</div>
+<p>Identifier of the error.</p>
+</div>
+<div class="paragraph">
+<p><strong>Responses example</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "error": "COMMON",
+  "errorId": 0,
+  "message": "Sorry for inconvenience. We're fixing the issue. If you have urgent questions, contact support",
+  "systemId": "core"
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+<details class="403">
+<summary class="title"><strong><code>403 - Account Duplication (Phone Number Uniqueness Check)</code></strong></summary>
+<div class="content">
+<div class="paragraph">
+<p>Phone Number Uniqueness Check</p>
+</div>
+<div class="paragraph">
+<p>Errors related to account duplication and phone number uniqueness check.</p>
+</div>
+<div class="paragraph">
+<p>If a user attempts to register with a phone number already in the database, they will not receive an error message during the waiting period for SMS confirmation. This is a security measure to prevent unauthorized access to accounts.</p>
+</div>
+</div>
+</details>
 </div>
 </div>
 </article>
